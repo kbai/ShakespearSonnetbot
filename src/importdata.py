@@ -4,13 +4,22 @@ from sklearn.feature_extraction.text import CountVectorizer
 #this script uses CountVectorizer to process corpus.
 
 def main():
-    print('kkk')
-    corpus = [
-        'This is the first document.',
-        'This is the second second document.',
-        'And the third one.',
-        'Is this the first document?',
-    ]
+
+    corpus = importasline()
+    print(corpus[0:10])
+
+    vectorizer = CountVectorizer(min_df=1)
+    vectorizer
+    X = vectorizer.fit_transform(corpus[0:10])
+
+    analyze = vectorizer.build_analyzer()
+    print(vectorizer.get_feature_names())
+
+    print(X[0:10].toarray())
+
+
+def importaspoem():
+
     corpus = []
     article = ''
     with open('../data/shakespear.txt') as file:
@@ -20,15 +29,24 @@ def main():
                 #then that means an end of poem is met.
                 corpus.append(article)
             else:
+                article += ' '
                 article += line.strip()
-    print(corpus[2])
-  #  vectorizer = CountVectorizer(min_df=1)
-  #  X = vectorizer.fit_transform(corpus)
 
-  #  analyze = vectorizer.build_analyzer()
-  #  print(vectorizer.get_feature_names())
+    return corpus
 
-  #  print(X.toarray())
+
+
+def importasline():
+
+    corpus = []
+    article = ''
+    with open('../data/shakespear.txt') as file:
+        for line in file:
+            if(len(line.strip())>4):
+
+                corpus.append(line.strip())
+
+    return corpus
 
 
 
