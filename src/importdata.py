@@ -28,6 +28,7 @@ def importaspoem():
                 #if the length of a sentence is smaller than 4,
                 #then that means an end of poem is met.
                 corpus.append(article)
+                article = ''
             else:
                 article += ' '
                 article += line.strip()
