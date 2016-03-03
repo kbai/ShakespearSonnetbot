@@ -6,16 +6,13 @@ from sklearn.feature_extraction.text import CountVectorizer
 def main():
 
     corpus = importasline()
-    print(corpus[0:10])
-
     vectorizer = CountVectorizer(min_df=1)
-    vectorizer
-    X = vectorizer.fit_transform(corpus[0:10])
-
+    X = vectorizer.fit_transform(corpus)
     analyze = vectorizer.build_analyzer()
-    print(vectorizer.get_feature_names())
+    Y = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))]
+    print(Y)
+    print(corpus[0:3])
 
-    print(X[0:10].toarray())
 
 
 def importaspoem():
