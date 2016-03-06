@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1457044212 "ReportTemplate.tex" "ReportTemplate.pdf" "ReportTemplate" 1457044212
-  "./ReportTemplate.out" 1457044212 243 6aac15034ad23a1f0f9909406fe0525e ""
-  "./projectpreamble.tex" 1454993472 1789 6338f06b8212b40ed29c1b3fb2d6ad34 ""
+["pdflatex"] 1457234722 "ReportTemplate.tex" "ReportTemplate.pdf" "ReportTemplate" 1457234723
+  "./ReportTemplate.out" 1457234723 243 6aac15034ad23a1f0f9909406fe0525e ""
+  "./projectpreamble.tex" 1457234667 1810 b78cdc48b0c5d341e2a650b225cb8a54 ""
   "/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2015/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/palatino/pplb7t.tfm" 1136768653 1616 371d1ee60c04b008c8fd760060cd34f1 ""
@@ -117,6 +117,7 @@
   "/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls" 1428932888 20708 96f8bca6e380179cada1d49716376167 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/base/ifthen.sty" 1428932888 5159 bb529586d444e85eb00179221b678119 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/base/size10.clo" 1428932888 9179 632e23fed01c842f2eaef1dd9953a446 ""
+  "/usr/local/texlive/2015/texmf-dist/tex/latex/base/wrapfig.sty" 1044403200 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption.sty" 1368312746 65148 c61accbd2b9a5316d9be0887ec48d722 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption3.sty" 1368312746 62748 b02c0dc118f5f35146d37cec569e83b1 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/comment/comment.sty" 1390604416 9666 b0ada4704d4b3d0048a56c49bc982988 ""
@@ -164,12 +165,12 @@
   "/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1432479641 1764542 91654ba72bdb667e84ea24f076ae16d8 ""
   "/usr/local/texlive/2015/texmf-var/web2c/pdftex/pdflatex.fmt" 1432479681 3849859 39a7d258195bde2394e244961601fbc5 ""
   "/usr/local/texlive/2015/texmf.cnf" 1432479636 577 0d611272082f3cdb8e80e09a3c69cf07 ""
-  "ReportTemplate.aux" 1457044212 1095 90e163e43b46dd8d211e87087af18596 ""
-  "ReportTemplate.out" 1457044212 243 6aac15034ad23a1f0f9909406fe0525e ""
-  "ReportTemplate.tex" 1457044210 1381 39dc6d1fac208e7b02c44fd9a0aed103 ""
-  "projectpreamble.tex" 1454993472 1789 6338f06b8212b40ed29c1b3fb2d6ad34 ""
+  "ReportTemplate.aux" 1457234723 1095 90e163e43b46dd8d211e87087af18596 ""
+  "ReportTemplate.out" 1457234723 243 6aac15034ad23a1f0f9909406fe0525e ""
+  "ReportTemplate.tex" 1457234717 1381 39dc6d1fac208e7b02c44fd9a0aed103 ""
+  "projectpreamble.tex" 1457234667 1810 b78cdc48b0c5d341e2a650b225cb8a54 ""
   (generated)
-  "ReportTemplate.out"
-  "ReportTemplate.pdf"
-  "ReportTemplate.aux"
   "ReportTemplate.log"
+  "ReportTemplate.out"
+  "ReportTemplate.aux"
+  "ReportTemplate.pdf"
