@@ -4,78 +4,199 @@ from importdata import importasline
 from sklearn.feature_extraction.text import CountVectorizer
 
 
-
 class modelhmm():
-    def __init__(self,m,n):
-        self.obs_ = np.random.rand( m , n )
-        self.trans_ = np.random.rand(m + 2 , m + 2)
-        self.m_ = m   # number of POS
-        self.n_ = n   # number of words
-        self.start_ = m
-        self.end_ = m+1
-        self.trans_[:,self.start_] = 0.0
-        self.trans_[self.end_,:] = 0.0
+    def __init__(self, m, n, corpus_in):
+        self.obs_ = np.random.rand(m, n)
+        self.trans_ = np.random.rand(m + 2, m + 2)
+        self.m_ = m  # number of POS
+        self.n_ = n  # number of words
+        self.start_ = m  # we put start token as the m+1 th token
+        self.end_ = m + 1  # we put end token as the m+2 th token
+        self.trans_[:, self.start_] = 0.0
+        self.trans_[self.end_, :] = 0.0
+        self.corpus = corpus_in
+        self.y = []
+        self.epsilon = 0.0
 
         for i in range(m):
-            self.obs_[i,:] = self.obs_[i,:]/np.sum(self.obs_[i,:])
-            self.trans_[i,:] = self.trans_[i,:]/np.sum(self.trans_[i,:])
+            self.obs_[i, :] = self.obs_[i, :] / np.sum(self.obs_[i, :])
+            self.trans_[i, :] = self.trans_[i, :] / np.sum(self.trans_[i, :])
+
 
         print self.trans_
-        #we store transition possibility from starting state and to end state
-        #at the end of the transition matrix
+        # we store transition possibility from starting state and to end state
+        # at the end of the transition matrix
 
-
-
-
-
-    def viterbi(self,data):
+    def viterbi(self, data):
 
         logobs = np.log(self.obs_)
         logtrans = np.log(self.trans_)
 
-        ns = self.m_ # #POS
+        ns = self.m_  # #POS
         nd = len(data)
-        plen = np.zeros((nd,ns))
-        path = np.zeros((nd,ns))
-        plen[0,:] = logobs[:,data[0]] + logtrans[self.start_,0:ns]
-        for ii in range(1,nd):
-            for jj in range(0,ns):
+        plen = np.zeros((nd, ns))
+        path = np.zeros((nd, ns))
+        plen[0, :] = logobs[:, data[0]] + logtrans[self.start_, 0:ns]
+        for ii in range(1, nd):
+            for jj in range(0, ns):
                 maxp = - float('inf')
-                for kk in range(0,ns):
-                    tmpp = plen[ii-1,kk] + logtrans[kk,jj] + logobs[jj,data[ii]]
-                    if(tmpp > maxp):
-                        path[ii,jj] = kk
+                for kk in range(0, ns):
+                    tmpp = plen[ii - 1, kk] + logtrans[kk, jj] + logobs[jj, data[ii]]
+                    if (tmpp > maxp):
+                        path[ii, jj] = kk
                         maxp = tmpp
-                plen[ii,jj] = maxp
+                plen[ii, jj] = maxp
         minp = -float('inf')
-        max_path = np.full((nd,),0)
+        max_path = np.full((nd,), 0)
         max_end_tag = -1
-        for ii in range(0,ns):
-            if (plen[-1,ii] > minp):
-                minp = plen[-1,ii]
+        for ii in range(0, ns):
+            if (plen[-1, ii] > minp):
+                minp = plen[-1, ii]
                 max_end_tag = ii
         max_path[-1] = max_end_tag
-        for ii in range(nd,1,-1):
-            max_path[ii-2] = path[ii-1,max_path[ii-1]]
+        for ii in range(nd, 1, -1):
+            max_path[ii - 2] = path[ii - 1, max_path[ii - 1]]
 
-        return plen,path,max_path
+        return plen, path, max_path
+
+    def forward_alg(self, observ):
+        # dimensions
+        A = self.trans_
+        O = self.obs_
+        num_state = self.m_
+
+        num_obs = len(observ)
+        # prelocate space for alpha: we store all alpha for possible use in backward algorithm
+        alpha = np.zeros((num_state, num_obs))
+        alpha[:, 0] = A[self.start_, :num_state] * O[:, observ[0]]
+        # begin forward
+        for obserID, observVal in enumerate(observ[1:]):
+            alpha[:, obserID + 1] = np.dot(alpha[:, obserID], A[:num_state, :num_state]) * O[:, observVal]
+
+
+        beta = np.zeros((num_state, num_obs))
+        beta[:, -1] = A[:self.m_,self.end_]
+        for obserID, observVal in enumerate(reversed(observ[1:])):
+            beta[:, num_obs - obserID - 2] = np.dot(beta[:, num_obs - obserID - 1]* O[:, observVal], A[:num_state, :num_state].transpose())
+        p_margin = np.zeros((num_state, num_obs))
+        for i in range(num_obs):
+            p_margin[:, i] = alpha[:, i] * beta[:, i] / (np.dot(alpha[:, i], beta[:, i]) + self.epsilon)
+        return alpha, beta, p_margin
+
+    def update_state(self, observ):
+        alpha, beta, p = self.forward_alg(observ)
+
+        marginal_p = np.zeros((self.m_, self.m_))
+        tmp_mat = np.zeros((self.m_ + 2, self.m_ + 2))
+        for obserID, observVal in enumerate(observ[1:]):
+            al_t_bt = np.dot(alpha[:, obserID].reshape((self.m_, 1)), \
+                             beta[:, obserID + 1].reshape(1, self.m_))
+            tmp = al_t_bt * self.trans_[:self.m_, :self.m_]
+            for i in range(self.m_):
+                tmp[:, i] = tmp[:, i] * self.obs_[i, observVal]
+
+            marginal_p += tmp / (np.sum(np.sum(tmp)))
+            print(np.sum(np.sum(tmp)))
+
+
+        p_start_tmp = self.trans_[self.start_, :self.m_] * self.obs_[:, observ[0]] * beta[:, 0]
+        p_start = p_start_tmp / (np.sum(p_start_tmp) + self.epsilon)
+
+        p_end_tmp = self.trans_[:self.m_, self.end_] * alpha[:, -1]
+        p_end = p_end_tmp / (np.sum(p_end_tmp) + self.epsilon)
+
+        tmp_mat[:self.m_, :self.m_] = marginal_p
+        tmp_mat[self.start_, :self.m_] = p_start
+        tmp_mat[:self.m_, self.end_] = p_end
+        self.obs_[:, :] = 1e-100
+        self.trans_[:, :] = 0.0
+
+        for i in range(self.m_ + 1):
+            self.trans_[i, :] = (tmp_mat[i, :] + 1e-100)/( np.sum(tmp_mat[i, :]+1e-100) + self.epsilon)
+
+        for i in range(self.m_):
+            for j in range(len(observ)):
+                self.obs_[i, observ[j]] += p[i, j]
+            self.obs_[i, :] /= (np.sum(self.obs_[i, :]) + self.epsilon)
+
+    def update_state_corpus(self, corpus):
+
+        marginal_p_all = np.zeros((self.m_, self.m_))
+        tmp_mat = np.zeros((self.m_ + 2, self.m_ + 2))
+        al_t_bt_all = np.zeros((self.m_,self.m_))
+        p_start_all = np.zeros(self.m_)
+        p_end_all = np.zeros(self.m_)
+        obs_tmp = np.zeros((self.m_,self.n_))
+        obs_tmp[:,:] = 1e-100
+        log_prod_p = 0.0
+
+        for observ in corpus:
+            alpha, beta, p = self.forward_alg(observ)
+            log_prod_p += np.log(np.sum(alpha[:,-1]*beta[:,-1]))/np.log(10)
+            for obserID, observVal in enumerate(observ[1:]):
+                al_t_bt = np.dot(alpha[:, obserID].reshape((self.m_, 1)), \
+                             beta[:, obserID + 1].reshape(1, self.m_))
+                tmp = al_t_bt*self.trans_[:self.m_,:self.m_]
+                for i in range(self.m_):
+                    tmp[:, i] = tmp[:, i] * self.obs_[i, observVal]
+                marginal_p_all += tmp/np.sum(np.sum(tmp))
+
+            p_start = self.trans_[self.start_, :self.m_] * self.obs_[:, observ[0]] * beta[:, 0]
+            p_start_all += p_start/np.sum(p_start)
+            p_end = self.trans_[:self.m_, self.end_] * alpha[:, -1]
+            p_end_all += p_end/np.sum(p_end)
+
+            for i in range(self.m_):
+                for j in range(len(observ)):
+                    obs_tmp[i, observ[j]] += p[i, j]
+
+        tmp_mat[:self.m_,:self.m_] = marginal_p_all
+        tmp_mat[self.start_,:self.m_] = p_start_all
+        tmp_mat[:self.m_,self.end_] = p_end_all
+
+        for i in range(self.m_ + 1):
+            self.trans_[i, :] = (tmp_mat[i, :] + 1e-100)/( np.sum(tmp_mat[i, :]+1e-100) )
+        for i in range(self.m_):
+            obs_tmp[i, :] /= (np.sum(obs_tmp[i, :]))
+        self.obs_ = obs_tmp
+        return log_prod_p
+
+
+
+
+
+
+
+    def find_max_Y(self):
+        for line in self.corpus:
+            plen, path, max_path = self.viterbi(line)
+            self.y.append(max_path)
+
 
 def main():
+
+
+
     corpus = importasline()
+
     vectorizer = CountVectorizer(min_df=1)
     X = vectorizer.fit_transform(corpus)
     analyze = vectorizer.build_analyzer()
     Y = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))]
     print(Y)
     words = vectorizer.get_feature_names()
-    num_of_hidden_states = 10
+    num_of_hidden_states = 2
     print(len(words))
-    hmm = modelhmm(num_of_hidden_states,len(words))
-    plen,path,max_path = hmm.viterbi(Y[0])
-    print(max_path)
+    print(Y)
+    hmm = modelhmm(num_of_hidden_states, len(words), Y)
+    #   hmm.find_max_Y()
+    hmm.forward_alg(Y[0])
+    for i in range(200):
+        print(i)
+        print(hmm.update_state_corpus(Y))
+    print(hmm.obs_[:,Y[0]])
+    print(hmm.trans_)
 
 
 if __name__ == "__main__":
     main()
-
-
