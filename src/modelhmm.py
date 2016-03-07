@@ -74,7 +74,7 @@ class modelhmm():
             row : hidden state
             column : number of columns == number of sequence 
         '''
-        alpha_set = list([])
+        self.alpha_set = list([])
         num_of_sequence = len(data)
         for it,sequence in enumerate(data):
             Mj = len(sequence)   # Mj denotes the length of sequence
@@ -85,6 +85,7 @@ class modelhmm():
                 alpha_tmp = [self.obs_[label,ii] * np.dot(alpha[:,ii - 1],self.trans_[0:4,label]) for label in range(self.m_)]
                 assert self.m_ == len(alpha_tmp), 'self.m_ == len(alpha_tmp) should hold'
                 alpha[:,ii] = np.array(alpha_tmp)
+            self.alpha_set.append(alpha)
 
 
 
