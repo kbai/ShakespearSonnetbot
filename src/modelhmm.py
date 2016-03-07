@@ -84,8 +84,14 @@ class modelhmm():
             assert self.trans_[self.start_, 0:4][0] * self.obs_[:,sequence[0]][0] == alpha[0, 0], 'zip should be pointwise pick'
 
             for ii in range(1, Mj):
-                alpha_tmp = [self.obs_[label, ii] * np.dot(alpha[:, ii - 1],self.trans_[0:4, label]) for label in range(self.m_)]
+                alpha_tmp = [self.obs_[label, sequence[ii]] * np.dot(alpha[:, ii - 1],self.trans_[0:4, label]) for label in range(self.m_)]
                 assert self.m_ == len(alpha_tmp), 'self.m_ == len(alpha_tmp) should hold'
+                assert alpha_tmp[0] == self.obs_[0,sequence[ii]] * \
+                                            (alpha[0, ii - 1] * self.trans_[0, 0] + \
+                                             alpha[1, ii - 1 ] * self.trans_[1, 0] + \
+                                             alpha[2, ii - 1] * self.trans_[2, 0] + \
+                                             alpha[3, ii - 1] * self.trans_[3, 0])\
+                                    , 'There is error in calculating alpha'
                 alpha[:,ii] = np.array(alpha_tmp)
             
             self.alpha_set.append(alpha)
@@ -107,9 +113,14 @@ class modelhmm():
                             for label in range(self.m_)\
                        ]
                 beta_tmp = [sum(line) for line in tmp]
-                assert self.m_ == len(beta_tmp), 'self.m_ == len(beta_tmp) should hold '
+                assert self.m_ == len(beta_tmp), 'self.m_ == len(beta_tmp) should hold'
+                assert beta_tmp[0] == beta[0, ii + 1] * self.trans_[0, 0] * self.obs_[0, sequence[ii + 1]]\
+                                    + beta[1, ii + 1] * self.trans_[0, 1] * self.obs_[1, sequence[ii + 1]]\
+                                    + beta[2, ii + 1] * self.trans_[0, 2] * self.obs_[2, sequence[ii + 1]]\
+                                    + beta[3, ii + 1] * self.trans_[0, 3] * self.obs_[3, sequence[ii + 1]]\
+                                    , ' There is error in calculating beta!'
                 beta[:, ii] = np.array(beta_tmp)
-                
+
             self.beta_set.append(beta)
 
         
