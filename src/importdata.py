@@ -5,7 +5,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 def main():
 
-    corpus = importasline()
+    corpus = importasline('../data/shakespear.txt')
     vectorizer = CountVectorizer(min_df=1)
     X = vectorizer.fit_transform(corpus)
     analyze = vectorizer.build_analyzer()
@@ -15,11 +15,11 @@ def main():
 
 
 
-def importaspoem():
+def importaspoem(filename):
 
     corpus = []
     article = ''
-    with open('../data/shakespear.txt') as file:
+    with open(filename) as file:
         for line in file:
             if(len(line.strip())<=4):
                 #if the length of a sentence is smaller than 4,
@@ -34,11 +34,11 @@ def importaspoem():
 
 
 
-def importasline():
+def importasline(filename):
 
     corpus = []
     article = ''
-    with open('../data/shakespear.txt') as file:
+    with open(filename) as file:
         for line in file:
             if(len(line.strip())>4):
 

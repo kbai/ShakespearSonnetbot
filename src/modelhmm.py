@@ -7,12 +7,12 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 class modelhmm():
     def __init__(self,m,n):
-        self.obs_ = np.random.rand( m , n )
-        self.trans_ = np.random.rand(m + 2 , m + 2)
+        self.obs_ = np.random.rand(m,n)               # obser matrix
+        self.trans_ = np.random.rand(m + 2 , m + 2)   # trans matrix
         self.m_ = m   # number of POS
         self.n_ = n   # number of words
         self.start_ = m
-        self.end_ = m+1
+        self.end_ = m + 1
         self.trans_[:,self.start_] = 0.0
         self.trans_[self.end_,:] = 0.0
 
@@ -20,12 +20,9 @@ class modelhmm():
             self.obs_[i,:] = self.obs_[i,:]/np.sum(self.obs_[i,:])
             self.trans_[i,:] = self.trans_[i,:]/np.sum(self.trans_[i,:])
 
-        print self.trans_
+        ###print self.trans_, 'self.trans_'
         #we store transition possibility from starting state and to end state
         #at the end of the transition matrix
-
-
-
 
 
     def viterbi(self,data):
@@ -60,19 +57,37 @@ class modelhmm():
 
         return plen,path,max_path
 
+
+def training(self,sequence_set):
+    return sequence_set
+
+def forward_backward(self,data):
+    #  Each row in data is a sequence
+    '''
+    forward algorithm
+    alpha:
+        row : hidden state
+        column : number of columns == number of sequence 
+    '''
+    num_of_sequence = len(data)
+    for it,sequence in range(num_of_sequence):
+        #M = 
+        alpha 
+
+
 def main():
-    corpus = importasline()
+    corpus = importasline('../data/shakespear.txt')
     vectorizer = CountVectorizer(min_df=1)
     X = vectorizer.fit_transform(corpus)
     analyze = vectorizer.build_analyzer()
-    Y = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))]
-    print(Y)
-    words = vectorizer.get_feature_names()
+    Y = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))] # each element in Y contains words in a line
     num_of_hidden_states = 10
-    print(len(words))
+    words = vectorizer.get_feature_names()
+
+
     hmm = modelhmm(num_of_hidden_states,len(words))
     plen,path,max_path = hmm.viterbi(Y[0])
-    print(max_path)
+
 
 
 if __name__ == "__main__":
