@@ -68,25 +68,52 @@ class modelhmm():
     def forward_backward(self,data):
     #  Each row in data is a sequence
         
-        '''
-        forward algorithm
-        alpha:
-            row : hidden state
-            column : number of columns == number of sequence 
-        '''
         self.alpha_set = list([])
-        num_of_sequence = len(data)
+        self.beta_set = list([])
         for it,sequence in enumerate(data):
             Mj = len(sequence)   # Mj denotes the length of sequence
-            alpha = np.zeros((self.m_,Mj))
+            '''
+            forward algorithm
+            alpha:
+                row : hidden state
+                column : number of columns == number of sequence 
+            '''
+            alpha = np.zeros((self.m_, Mj))
 
-            alpha[:,0] =  [A*O for A,O in zip(self.trans_[self.start_,0:4],self.obs_[:,sequence[0]])]
-            for ii in range(1,Mj):
-                alpha_tmp = [self.obs_[label,ii] * np.dot(alpha[:,ii - 1],self.trans_[0:4,label]) for label in range(self.m_)]
+            alpha[:, 0] =  [A * O for A,O in zip(self.trans_[self.start_, 0:4],self.obs_[:,sequence[0]])]
+            assert self.trans_[self.start_, 0:4][0] * self.obs_[:,sequence[0]][0] == alpha[0, 0], 'zip should be pointwise pick'
+
+            for ii in range(1, Mj):
+                alpha_tmp = [self.obs_[label, ii] * np.dot(alpha[:, ii - 1],self.trans_[0:4, label]) for label in range(self.m_)]
                 assert self.m_ == len(alpha_tmp), 'self.m_ == len(alpha_tmp) should hold'
                 alpha[:,ii] = np.array(alpha_tmp)
+            
             self.alpha_set.append(alpha)
 
+            
+            '''
+            backward algorithm
+            beta:
+                row : hidden state
+                column : number of columns == number of sequence 
+            '''
+            beta = np.zeros((self.m_,Mj))
+            beta[:,Mj-1] = np.ones(self.m_)
+            for ii in reversed(range(0,Mj-1)):
+                tmp = [\
+                                [ b * A * O \
+                                    for b,A,O in zip(beta[:,ii + 1], self.trans_[label, 0:4], self.obs_[:, sequence[ii + 1]])\
+                                ]\
+                            for label in range(self.m_)\
+                       ]
+                beta_tmp = [sum(line) for line in tmp]
+                assert self.m_ == len(beta_tmp), 'self.m_ == len(beta_tmp) should hold '
+                beta[:, ii] = np.array(beta_tmp)
+                
+            self.beta_set.append(beta)
+
+        
+        return self.alpha_set, self.beta_set
 
 
 def main():
