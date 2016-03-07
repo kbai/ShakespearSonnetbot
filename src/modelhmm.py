@@ -2,19 +2,23 @@ import random
 import numpy as np
 from importdata import importasline
 from sklearn.feature_extraction.text import CountVectorizer
+import warnings
+warnings.filterwarnings('ignore')
 
 
 
 class modelhmm():
     def __init__(self,m,n):
         self.obs_ = np.random.rand(m,n)               # obser matrix
-        self.trans_ = np.random.rand(m + 2 , m + 2)   # trans matrix
+        self.trans_ = np.random.rand(m + 2 , m + 2)   # trans matrix : transition from row label to column label
         self.m_ = m   # number of POS
         self.n_ = n   # number of words
         self.start_ = m
         self.end_ = m + 1
         self.trans_[:,self.start_] = 0.0
         self.trans_[self.end_,:] = 0.0
+        self.alpha_set = list([])
+        self.beta_set = list([])
 
         for i in range(m):
             self.obs_[i,:] = self.obs_[i,:]/np.sum(self.obs_[i,:])
@@ -58,21 +62,30 @@ class modelhmm():
         return plen,path,max_path
 
 
-def training(self,sequence_set):
-    return sequence_set
+    def training(self,sequence_set):
+        return sequence_set
 
-def forward_backward(self,data):
+    def forward_backward(self,data):
     #  Each row in data is a sequence
-    '''
-    forward algorithm
-    alpha:
-        row : hidden state
-        column : number of columns == number of sequence 
-    '''
-    num_of_sequence = len(data)
-    for it,sequence in range(num_of_sequence):
-        #M = 
-        alpha 
+        
+        '''
+        forward algorithm
+        alpha:
+            row : hidden state
+            column : number of columns == number of sequence 
+        '''
+        alpha_set = list([])
+        num_of_sequence = len(data)
+        for it,sequence in enumerate(data):
+            Mj = len(sequence)   # Mj denotes the length of sequence
+            alpha = np.zeros((self.m_,Mj))
+
+            alpha[:,0] =  [A*O for A,O in zip(self.trans_[self.start_,0:4],self.obs_[:,sequence[0]])]
+            for ii in range(1,Mj):
+                alpha_tmp = [self.obs_[label,ii] * np.dot(alpha[:,ii - 1],self.trans_[0:4,label]) for label in range(self.m_)]
+                assert self.m_ == len(alpha_tmp), 'self.m_ == len(alpha_tmp) should hold'
+                alpha[:,ii] = np.array(alpha_tmp)
+
 
 
 def main():
@@ -80,14 +93,14 @@ def main():
     vectorizer = CountVectorizer(min_df=1)
     X = vectorizer.fit_transform(corpus)
     analyze = vectorizer.build_analyzer()
-    Y = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))] # each element in Y contains words in a line
-    num_of_hidden_states = 10
+    num_of_hidden_states = 4
+    # each element in Y contains words in a line, the label of word starts from 0
+    Y = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))]
     words = vectorizer.get_feature_names()
-
-
+    
     hmm = modelhmm(num_of_hidden_states,len(words))
     plen,path,max_path = hmm.viterbi(Y[0])
-
+    hmm.forward_backward(Y)
 
 
 if __name__ == "__main__":
