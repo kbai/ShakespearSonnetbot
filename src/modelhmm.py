@@ -88,7 +88,7 @@ class modelhmm():
                 assert self.m_ == len(alpha_tmp), 'self.m_ == len(alpha_tmp) should hold'
                 assert alpha_tmp[0] == self.obs_[0,sequence[ii]] * \
                                             (alpha[0, ii - 1] * self.trans_[0, 0] + \
-                                             alpha[1, ii - 1 ] * self.trans_[1, 0] + \
+                                             alpha[1, ii - 1] * self.trans_[1, 0] + \
                                              alpha[2, ii - 1] * self.trans_[2, 0] + \
                                              alpha[3, ii - 1] * self.trans_[3, 0])\
                                     , 'There is error in calculating alpha'
