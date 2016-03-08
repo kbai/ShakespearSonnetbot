@@ -15,7 +15,7 @@ def main():
 
 
 
-def importaspoem():
+def importaspoem(ignorehyphen):
 
     corpus = []
     article = ''
@@ -28,21 +28,26 @@ def importaspoem():
                 article = ''
             else:
                 article += ' '
-                article += line.strip()
+                if ignorehyphen:
+                    article += line.replace('-','').replace("'",'').strip()
+                else:
+                    article += line.replace("'",'').strip()
 
     return corpus
 
 
 
-def importasline():
+def importasline(ignorehyphen):
 
     corpus = []
     article = ''
     with open('../data/shakespear.txt') as file:
         for line in file:
             if(len(line.strip())>4):
-
-                corpus.append(line.strip())
+                if ignorehyphen:
+                    corpus.append(line.replace('-','').replace("'",'').strip())
+                else:
+                    corpus.append(line.replace("'",'').strip())
 
     return corpus
 

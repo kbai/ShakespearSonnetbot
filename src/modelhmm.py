@@ -2,10 +2,11 @@ import random
 import numpy as np
 from importdata import importasline
 from sklearn.feature_extraction.text import CountVectorizer
+import pandas as pd
 
 
 class modelhmm():
-    def __init__(self, m, n, corpus_in):
+    def __init__(self, m, n, corpus_in,name):
         self.obs_ = np.random.rand(m, n)
         self.trans_ = np.random.rand(m + 2, m + 2)
         self.m_ = m  # number of POS
@@ -17,7 +18,7 @@ class modelhmm():
         self.corpus = corpus_in
         self.y = []
         self.epsilon = 0.0
-
+        self.filename = name
         for i in range(m):
             self.obs_[i, :] = self.obs_[i, :] / np.sum(self.obs_[i, :])
             self.trans_[i, :] = self.trans_[i, :] / np.sum(self.trans_[i, :])
@@ -26,6 +27,21 @@ class modelhmm():
         print self.trans_
         # we store transition possibility from starting state and to end state
         # at the end of the transition matrix
+    def savemodel(self):
+        np.savetxt('../model/'+self.filename+'trans.txt',self.trans_)
+        np.savetxt('../model/'+self.filename+'obs.txt',self.obs_)
+
+
+    def loadmodel(self):
+        self.trans_ = np.loadtxt('../model/'+self.filename+'trans.txt')
+        self.obs_ = np.loadtxt('../model/'+self.filename+'obs.txt')
+
+
+    def analyzing_word(self,words):
+        df = pd.DataFrame((self.obs_).transpose(),index=words)
+        df.to_csv('../model/'+self.filename+'withword.txt',index=True,header=True,sep=' ')
+
+
 
     def viterbi(self, data):
 
@@ -180,6 +196,58 @@ class modelhmm():
             obs_tmp[i, :] /= (np.sum(obs_tmp[i, :]))
         self.obs_ = obs_tmp
         return log_prod_p
+    def generating_random_line(self):
+        line = []
+        linew = []
+        currentstate = self.start_
+        while currentstate!=self.end_:
+            currentstate = random_distr(self.trans_[currentstate,:])
+            line.append(currentstate)
+        for token in line[:-1]:
+            word = random_distr(self.obs_[token,:])
+            linew.append(word)
+
+        return line,linew
+
+
+    def generating_sequence(self,length):
+        seq = []
+        word = []
+        A = self.trans_
+        O = self.obs_
+        max_obs = np.max(self.obs_,1)
+        max_words = np.argmax(self.obs_,1)
+        p_seq = np.zeros((length,self.m_+1))
+        anc_seq = np.zeros((length,self.m_+1))
+        p_seq[0,:self.m_] = A[self.start_,:self.m_]*np.max(O,1)
+        p_seq[0,self.m_] = A[self.start_,self.end_]
+        anc_seq[0,:] = self.start_
+
+        for i in range(1,length):
+            for j in range(self.m_):
+                ptmp = np.zeros(self.m_)
+                for k in range(self.m_):
+                    ptmp[k] = p_seq[i-1,k] * self.trans_[k,j] * max_obs[j]
+                anc_seq[i,j] = np.argmax(ptmp)
+                p_seq[i,j] = np.max(ptmp)
+            ptmp = np.zeros(self.m_)
+            for k in range(self.m_):
+                ptmp[k] = p_seq[i-1,k] * self.trans_[k,self.end_]
+            p_seq[i,self.m_] = np.max(ptmp)
+            anc_seq[i,self.m_] = np.argmax(ptmp)
+        print(p_seq)
+        print(anc_seq)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -195,9 +263,7 @@ class modelhmm():
 
 def main():
 
-
-
-    corpus = importasline()
+    corpus = importasline(ignorehyphen = True)
 
     vectorizer = CountVectorizer(min_df=1)
     X = vectorizer.fit_transform(corpus)
@@ -205,16 +271,38 @@ def main():
     Y = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))]
     print(Y)
     words = vectorizer.get_feature_names()
-    num_of_hidden_states = 5
+    num_of_hidden_states = 8
     print(len(words))
     print(Y)
-    hmm = modelhmm(num_of_hidden_states, len(words), Y)
-    for i in range(200):
+    hmm = modelhmm(num_of_hidden_states, len(words), Y, 'modelnhidden8ignorehyphen')
+    for i in range(500):
         print(i)
         print(hmm.update_state_corpus(Y))
-    print(hmm.obs_[:,Y[0]])
+    hmm.savemodel()
+    #print(hmm.obs_[:,Y[0]])
     print(hmm.trans_)
+    hmm.loadmodel()
+    print('transloaded',hmm.trans_.shape)
+    print('obsloaded',hmm.obs_.shape)
+    line,linew = hmm.generating_random_line()
+    print linew
+    for i in linew:
+        print(words[i])
 
+
+    hmm.analyzing_word(words)
+
+
+def random_distr(l):
+    r = random.uniform(0, 1)
+    s = 0
+    item = 0
+    for  prob in l:
+        s += prob
+        if s >= r:
+            return item
+        item+=1
+    return item
 
 if __name__ == "__main__":
     main()
