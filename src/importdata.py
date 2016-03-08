@@ -1,5 +1,6 @@
 import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
+import string 
 
 #this script uses CountVectorizer to process corpus.
 
@@ -20,6 +21,8 @@ def main():
 def importaspoem(filename,ignorehyphen=True):
     corpus = []
     article = ''
+    redundant = '!"#$%&\'()*+,./:;<=>?@[\\]^_`{|}~'
+
     with open(filename) as file:
         for line in file:
             if(len(line.strip())<=8):
@@ -38,14 +41,18 @@ def importaspoem(filename,ignorehyphen=True):
 
 
 
-def importasline(filename,ignorehyphen=True):
+def importasline(filename,ignorehyphen=False):
     corpus = []
+    redundant = '!"#$%&\'()*+,./:;<=>?@[\\]^_`{|}~'
+
     article = ''
     with open(filename) as file:
         num = 0
         count = 0
+
         for line in file:
             if(len(line.strip())>8):
+                line = line.translate(string.maketrans("",""),redundant)
                 if(ignorehyphen):
                     corpus.append(line.replace('-','').replace("'",'').strip())
                 else:
