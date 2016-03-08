@@ -59,37 +59,48 @@ class modelhmm():
 
         return plen, path, max_path
 
-    def forward_alg(self, observ):
-        # dimensions
+    def forward_backward_alg(self, observ):
+        '''
+        :param observ: one article, can be a line or a poem
+        :return: alpha, beta, p_margin; p_margin(z,j)=P(y_j=z|x)
+        '''
         A = self.trans_
         O = self.obs_
         num_state = self.m_
 
         num_obs = len(observ)
-        # prelocate space for alpha: we store all alpha for possible use in backward algorithm
         alpha = np.zeros((num_state, num_obs))
+
         alpha[:, 0] = A[self.start_, :num_state] * O[:, observ[0]]
-        # begin forward
+
         for obserID, observVal in enumerate(observ[1:]):
             alpha[:, obserID + 1] = np.dot(alpha[:, obserID], A[:num_state, :num_state]) * O[:, observVal]
 
 
         beta = np.zeros((num_state, num_obs))
+
         beta[:, -1] = A[:self.m_,self.end_]
+
         for obserID, observVal in enumerate(reversed(observ[1:])):
             beta[:, num_obs - obserID - 2] = np.dot(beta[:, num_obs - obserID - 1]* O[:, observVal], A[:num_state, :num_state].transpose())
         p_margin = np.zeros((num_state, num_obs))
+
         for i in range(num_obs):
             p_margin[:, i] = alpha[:, i] * beta[:, i] / (np.dot(alpha[:, i], beta[:, i]) + self.epsilon)
         return alpha, beta, p_margin
 
     def update_state(self, observ):
-        alpha, beta, p = self.forward_alg(observ)
+        '''
+
+        :param observ: Do em updating once for a single article
+        :return: non
+        '''
+        alpha, beta, p = self.forward_backward_alg(observ)
 
         marginal_p = np.zeros((self.m_, self.m_))
         tmp_mat = np.zeros((self.m_ + 2, self.m_ + 2))
         for obserID, observVal in enumerate(observ[1:]):
-            al_t_bt = np.dot(alpha[:, obserID].reshape((self.m_, 1)), \
+            al_t_bt = np.dot(alpha[:, obserID].reshape((self.m_, 1)),
                              beta[:, obserID + 1].reshape(1, self.m_))
             tmp = al_t_bt * self.trans_[:self.m_, :self.m_]
             for i in range(self.m_):
@@ -112,7 +123,7 @@ class modelhmm():
         self.trans_[:, :] = 0.0
 
         for i in range(self.m_ + 1):
-            self.trans_[i, :] = (tmp_mat[i, :] + 1e-100)/( np.sum(tmp_mat[i, :]+1e-100) + self.epsilon)
+            self.trans_[i, :] = (tmp_mat[i, :] + 1e-100)/( np.sum(tmp_mat[i, :]+1e-100))
 
         for i in range(self.m_):
             for j in range(len(observ)):
@@ -120,6 +131,11 @@ class modelhmm():
             self.obs_[i, :] /= (np.sum(self.obs_[i, :]) + self.epsilon)
 
     def update_state_corpus(self, corpus):
+        '''
+
+        :param corpus: a list of articles. Updating self.trans_ and self.obs_ looping through all articles.
+        :return: return \sum _i log p(x_i|A,O)
+        '''
 
         marginal_p_all = np.zeros((self.m_, self.m_))
         tmp_mat = np.zeros((self.m_ + 2, self.m_ + 2))
@@ -131,18 +147,22 @@ class modelhmm():
         log_prod_p = 0.0
 
         for observ in corpus:
-            alpha, beta, p = self.forward_alg(observ)
-            log_prod_p += np.log(np.sum(alpha[:,-1]*beta[:,-1]))/np.log(10)
+            alpha, beta, p = self.forward_backward_alg(observ)
+            px = np.sum(alpha[:,-1]*beta[:,-1]) # calculating p(x)
+            log_prod_p += np.log(px)/np.log(10) # multiply all p(x_i)
             for obserID, observVal in enumerate(observ[1:]):
-                al_t_bt = np.dot(alpha[:, obserID].reshape((self.m_, 1)), \
-                             beta[:, obserID + 1].reshape(1, self.m_))
-                tmp = al_t_bt*self.trans_[:self.m_,:self.m_]
+                al_t_bt = np.dot(alpha[:, obserID].reshape((self.m_, 1)),
+                             beta[:, obserID + 1].reshape(1, self.m_)) #al_t_bt(i,j)=alpha(i)*beta(j)
+                tmp = al_t_bt*self.trans_[:self.m_,:self.m_]           #tmp(i,j) = al_t_bt(i,j)*A(i->j)
                 for i in range(self.m_):
-                    tmp[:, i] = tmp[:, i] * self.obs_[i, observVal]
-                marginal_p_all += tmp/np.sum(np.sum(tmp))
+                    tmp[:, i] = tmp[:, i] * self.obs_[i, observVal]    #tmp(i,j) = tmp(i,j)*O(j->word)
+                marginal_p_all += tmp/px                               #now tmp(i,j) = P(y_{k+1}=j,y_k=i,x)
+            #marginal_p_all(i,j) =  \sum P(y_{k+1}=j,y_k=i|x)
 
             p_start = self.trans_[self.start_, :self.m_] * self.obs_[:, observ[0]] * beta[:, 0]
+            #p_start(i) = p(y_0=start,y1 = i,x)
             p_start_all += p_start/np.sum(p_start)
+            #p_start_all(i) = p(y_0 = start, y_1=i|x)
             p_end = self.trans_[:self.m_, self.end_] * alpha[:, -1]
             p_end_all += p_end/np.sum(p_end)
 
@@ -185,12 +205,10 @@ def main():
     Y = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))]
     print(Y)
     words = vectorizer.get_feature_names()
-    num_of_hidden_states = 2
+    num_of_hidden_states = 5
     print(len(words))
     print(Y)
     hmm = modelhmm(num_of_hidden_states, len(words), Y)
-    #   hmm.find_max_Y()
-    hmm.forward_alg(Y[0])
     for i in range(200):
         print(i)
         print(hmm.update_state_corpus(Y))
