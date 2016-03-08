@@ -12,13 +12,12 @@ def main():
     analyze = vectorizer.build_analyzer()
     Y = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))]
 
-    print len(Y), 'len(Y)'
+    print(len(Y), 'len(Y)')
 
 
 
 
-def importaspoem(filename):
-
+def importaspoem(filename,ignorehyphen=True):
     corpus = []
     article = ''
     with open(filename) as file:
@@ -30,14 +29,16 @@ def importaspoem(filename):
                 article = ''
             else:
                 article += ' '
-                article += line.strip()
+                if ignorehyphen:
+                    article += line.replace("'",'').replace('-','').strip()
+                else:
+                    article += line.replace("'",'').strip()
 
     return corpus
 
 
 
-def importasline(filename):
-
+def importasline(filename,ignorehyphen=True):
     corpus = []
     article = ''
     with open(filename) as file:
@@ -45,7 +46,11 @@ def importasline(filename):
         count = 0
         for line in file:
             if(len(line.strip())>8):
-                corpus.append(line.strip())
+                if(ignorehyphen):
+                    corpus.append(line.replace('-','').replace("'",'').strip())
+                else:
+                    corpus.append(line.replace("'",'').strip())
+
     return corpus
 
 

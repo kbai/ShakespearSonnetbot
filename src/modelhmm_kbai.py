@@ -24,7 +24,7 @@ class modelhmm():
             self.trans_[i, :] = self.trans_[i, :] / np.sum(self.trans_[i, :])
 
 
-        print self.trans_
+        print(self.trans_)
         # we store transition possibility from starting state and to end state
         # at the end of the transition matrix
     def savemodel(self):
@@ -264,7 +264,7 @@ class modelhmm():
 
 def main():
 
-    corpus = importasline(ignorehyphen = True)
+    corpus = importasline('../data/groupA.txt',ignorehyphen = True)
 
     vectorizer = CountVectorizer(min_df=1)
     X = vectorizer.fit_transform(corpus)
@@ -272,11 +272,11 @@ def main():
     Y = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))]
     print(Y)
     words = vectorizer.get_feature_names()
-    num_of_hidden_states = 8
+    num_of_hidden_states = 500
     print(len(words))
     print(Y)
-    hmm = modelhmm(num_of_hidden_states, len(words), Y, 'modelnhidden8ignorehyphen')
-    for i in range(500):
+    hmm = modelhmm(num_of_hidden_states, len(words), Y, 'modelnhidden8groupA')
+    for i in range(100):
         print(i)
         print(hmm.update_state_corpus(Y))
     hmm.savemodel()
@@ -284,11 +284,14 @@ def main():
     print(hmm.trans_)
     hmm.loadmodel()
     print('transloaded',hmm.trans_.shape)
+
     print('obsloaded',hmm.obs_.shape)
-    line,linew = hmm.generating_random_line()
-    print linew
-    for i in linew:
-        print(words[i])
+    for i in range(20):
+        robotpoem = ''
+        line,linew = hmm.generating_random_line()
+        for j in linew:
+            robotpoem+=' '+words[j]+' '
+        print(robotpoem)
 
 
     hmm.analyzing_word(words)
