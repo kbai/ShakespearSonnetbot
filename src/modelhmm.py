@@ -19,6 +19,7 @@ class modelhmm():
         self.trans_[self.end_,:] = 0.0
         self.alpha_set = list([])
         self.beta_set = list([])
+        self.marginal = np.zeros(())
 
         for i in range(m):
             self.obs_[i,:] = self.obs_[i,:]/np.sum(self.obs_[i,:])
@@ -86,15 +87,6 @@ class modelhmm():
             for ii in range(1, Mj):
                 alpha_tmp = [self.obs_[label, sequence[ii]] * np.dot(alpha[:, ii - 1],self.trans_[0 : self.m_, label]) for label in range(self.m_)]
                 assert self.m_ == len(alpha_tmp), 'self.m_ == len(alpha_tmp) should hold'
-                '''
-                assert alpha_tmp[0] == self.obs_[0,sequence[ii]] * \
-                                            (alpha[0, ii - 1] * self.trans_[0, 0] + \
-                                             alpha[1, ii - 1] * self.trans_[1, 0] + \
-                                             alpha[2, ii - 1] * self.trans_[2, 0] + \
-                                             alpha[3, ii - 1] * self.trans_[3, 0])\
-                                    , 'There is error in calculating alpha'
-                alpha[:,ii] = np.array(alpha_tmp)
-                '''
             self.alpha_set.append(alpha)
 
             
@@ -115,14 +107,6 @@ class modelhmm():
                        ]
                 beta_tmp = [sum(line) for line in tmp]
                 assert self.m_ == len(beta_tmp), 'self.m_ == len(beta_tmp) should hold'
-                '''
-                assert beta_tmp[0] == beta[0, ii + 1] * self.trans_[0, 0] * self.obs_[0, sequence[ii + 1]]\
-                                    + beta[1, ii + 1] * self.trans_[0, 1] * self.obs_[1, sequence[ii + 1]]\
-                                    + beta[2, ii + 1] * self.trans_[0, 2] * self.obs_[2, sequence[ii + 1]]\
-                                    + beta[3, ii + 1] * self.trans_[0, 3] * self.obs_[3, sequence[ii + 1]]\
-                                    , ' There is error in calculating beta!'
-                beta[:, ii] = np.array(beta_tmp)
-                '''
             self.beta_set.append(beta)
 
         
@@ -134,7 +118,7 @@ def main():
     vectorizer = CountVectorizer(min_df=1)
     X = vectorizer.fit_transform(corpus)
     analyze = vectorizer.build_analyzer()
-    num_of_hidden_states = 4
+    num_of_hidden_states = 10
     # each element in Y contains words in a line, the label of word starts from 0
     Y = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))]
     words = vectorizer.get_feature_names()
