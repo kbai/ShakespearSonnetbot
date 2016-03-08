@@ -1,5 +1,6 @@
 from importdata import importasline
 from sklearn.feature_extraction.text import CountVectorizer
+import numpy as np
 
 '''
 	This code set implement grouping schemes
@@ -85,10 +86,51 @@ def grouping3(filename):
 
     return groupA, groupB
 
+def grouping1_returnword(filename):
+
+	###
+    ###	scheme	ABAB CDCD EFEF GG
+    ###
+
+    corpus = importasline(filename)
+    vectorizer = CountVectorizer(min_df=1)
+    X = vectorizer.fit_transform(corpus)
+    analyze = vectorizer.build_analyzer()
+
+    dataSet = corpus
+    assert 0 == len(dataSet) % 14, 'number of lines should be multiple of 14' 
+    
+    groupA = dataSet[ 0: :14] + dataSet[ 2: :14]
+    groupB = dataSet[ 1: :14] + dataSet[ 3: :14]
+    groupC = dataSet[ 4: :14] + dataSet[ 6: :14]
+    groupD = dataSet[ 5: :14] + dataSet[ 7: :14]
+    groupE = dataSet[ 8: :14] + dataSet[10: :14]
+    groupF = dataSet[ 9: :14] + dataSet[11: :14]
+    groupG = dataSet[12: :14] + dataSet[13: :14]
+
+    assert groupA[0] == dataSet[0], 'groupA[0] == dataSet[0] should hold'
+    assert groupE[1] == dataSet[22], 'groupA[8] == dataSet[22] should hold'
+
+    return groupA, groupB, groupC, groupD, groupE, groupF, groupG
+
+
+
 
 def main():
-	
-	grouping3('../data/shakespear_modified.txt')
+    [groupA,groupB,groupC,groupD,groupE,groupF,groupG]=grouping1_returnword('../data/shakespear_modified.txt')
+    np.savetxt('../data/groupA.txt',groupA,fmt='%s')
+    np.savetxt('../data/groupB.txt',groupB,fmt='%s')
+    np.savetxt('../data/groupC.txt',groupC,fmt='%s')
+    np.savetxt('../data/groupD.txt',groupD,fmt='%s')
+    np.savetxt('../data/groupE.txt',groupE,fmt='%s')
+    np.savetxt('../data/groupF.txt',groupF,fmt='%s')
+    np.savetxt('../data/groupG.txt',groupG,fmt='%s')
+
+
+
+
+
+
 
 if __name__ == "__main__":
     main()
