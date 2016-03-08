@@ -5,13 +5,15 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 def main():
 
-    corpus = importasline('../data/shakespear.txt')
+    ###corpus = importasline('../data/shakespear.txt')
+    corpus = importasline('../data/all_modified.txt')
     vectorizer = CountVectorizer(min_df=1)
     X = vectorizer.fit_transform(corpus)
     analyze = vectorizer.build_analyzer()
     Y = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))]
-    print(Y)
-    print(corpus[0:3])
+
+    print len(Y), 'len(Y)'
+
 
 
 
@@ -21,8 +23,8 @@ def importaspoem(filename):
     article = ''
     with open(filename) as file:
         for line in file:
-            if(len(line.strip())<=4):
-                #if the length of a sentence is smaller than 4,
+            if(len(line.strip())<=8):
+                #if the length of a sentence is less or equal to 8,
                 #then that means an end of poem is met.
                 corpus.append(article)
                 article = ''
@@ -39,11 +41,11 @@ def importasline(filename):
     corpus = []
     article = ''
     with open(filename) as file:
+        num = 0
+        count = 0
         for line in file:
-            if(len(line.strip())>4):
-
+            if(len(line.strip())>8):
                 corpus.append(line.strip())
-
     return corpus
 
 
