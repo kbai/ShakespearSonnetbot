@@ -34,8 +34,8 @@ def grouping1(filename):
     	groupF.append(dataSet[start + 9]) ; groupF.append(dataSet[start +11])
     	groupG.append(dataSet[start +12]) ; groupG.append(dataSet[start +13])
 
-    assert groupA[1] == dataSet[2], 'groupA[0] == dataSet[0] should hold'
-    assert groupC[1] == dataSet[6], 'groupA[8] == dataSet[22] should hold'
+    assert groupA[1] == dataSet[2], 'groupA[1] == dataSet[2] should hold'
+    assert groupC[1] == dataSet[6], 'groupC[1] == dataSet[6] should hold'
 
     return groupA, groupB, groupC, groupD, groupE, groupF, groupG
 
@@ -48,14 +48,19 @@ def grouping2(filename):
     dataSet = importasline(filename)
 
     assert 0 == len(dataSet) % 14, 'number of lines should be multiple of 14' 
-    
-    groupA = dataSet[ 0: :14] + dataSet[ 1: :14] + dataSet[ 2: :14] + dataSet[ 3: :14]
-    groupB = dataSet[ 4: :14] + dataSet[ 5: :14] + dataSet[ 6: :14] + dataSet[ 7: :14]
-    groupC = dataSet[ 8: :14] + dataSet[ 9: :14] + dataSet[10: :14] + dataSet[11: :14]
-    groupD = dataSet[12: :14] + dataSet[13: :14]
+    num_poem = len(dataSet) / 14
+    groupA = [] ; groupB = [] ; groupC = [] ; groupD = []
 
-    assert groupB[0] == dataSet[4], 'groupB[0] == dataSet[4] should hold'
-    assert groupC[1] == dataSet[22], 'groupC[1] == dataSet[22] should hold'
+    for it in range(num_poem):
+    	start = it * 14
+    	groupA.append(dataSet[start + 0]) ; groupA.append(dataSet[start + 1]) ; groupA.append(dataSet[start + 2]) ; groupA.append(dataSet[start + 3])
+    	groupB.append(dataSet[start + 4]) ; groupB.append(dataSet[start + 5]) ; groupB.append(dataSet[start + 6]) ; groupB.append(dataSet[start + 7]) 
+    	groupC.append(dataSet[start + 8]) ; groupC.append(dataSet[start + 9]) ; groupC.append(dataSet[start +10]) ; groupC.append(dataSet[start +11])
+    	groupD.append(dataSet[start +12]) ; groupD.append(dataSet[start +13])
+
+
+    assert groupB[3] == dataSet[7], 'groupB[3] == dataSet[7] should hold'
+    assert groupC[1] == dataSet[9], 'groupC[1] == dataSet[9] should hold'
 
     return groupA, groupB, groupC, groupD
 
@@ -68,19 +73,19 @@ def grouping3(filename):
     dataSet = importasline(filename)
 
     assert 0 == len(dataSet) % 14, 'number of lines should be multiple of 14' 
-    
-    groupA = dataSet[ 0: :14] + dataSet[ 1: :14] + dataSet[ 2: :14] + dataSet[ 3: :14] + \
-    		 dataSet[ 4: :14] + dataSet[ 5: :14] + dataSet[ 6: :14] + dataSet[ 7: :14] + \
-    		 dataSet[ 8: :14] + dataSet[ 9: :14] + dataSet[10: :14] + dataSet[11: :14]
-    groupB = dataSet[12: :14] + dataSet[13: :14]
+    num_poem = len(dataSet) / 14
+    groupA = [] ; groupB = [] ; groupC = [] ; groupD = []
 
-    assert groupB[1] == dataSet[26], 'groupB[1] == dataSet[26]'
+    for it in range(num_poem):
+    	start = it * 14
+    	groupA.append(dataSet[start + 0]) ; groupA.append(dataSet[start + 1]) ; groupA.append(dataSet[start + 2]) ; groupA.append(dataSet[start + 3]) ;\
+    	groupA.append(dataSet[start + 4]) ; groupA.append(dataSet[start + 5]) ; groupA.append(dataSet[start + 6]) ; groupA.append(dataSet[start + 7]) ;\
+    	groupA.append(dataSet[start + 8]) ; groupA.append(dataSet[start + 9]) ; groupA.append(dataSet[start +10]) ; groupA.append(dataSet[start +11]) ;\
+    	groupB.append(dataSet[start +12]) ; groupB.append(dataSet[start +13])
+
+    assert groupB[1] == dataSet[13], 'groupB[1] == dataSet[13] should hold'
 
     return groupA, groupB
-
-
-
-
 
 
 def main():
