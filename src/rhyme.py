@@ -99,7 +99,7 @@ def train():
         gen_rhyme(inputfile, outputfile)
 
 
-def sample_ending_word():
+def sample_ending_word(num_pairs):
     # get dictionary for each pair (A, B, C, D, E, F, G)
     rhyme_dicts = dict()
     for ind in ['A','B','C','D','E','F','G']:
@@ -120,16 +120,23 @@ def sample_ending_word():
     # sample from the dictionary with weights
     ending_words = dict()
     for ind in ['A','B','C','D','E','F','G']:
-        print ind
-        rhyme_weight, rhyme_dict = rhyme_dicts[ind]
-        phonID = np.random.choice(len(rhyme_weight), p=rhyme_weight)
-        while True:
-            words = np.random.choice(rhyme_dict[phonID], size=2)
-            # sample two different words
-            if words[0] != words[1]: break
-        ending_words[ind] = words
-        print words
+        ending_words[ind] = []
+        for n in range(num_pairs):
+            rhyme_weight, rhyme_dict = rhyme_dicts[ind]
+            phonID = np.random.choice(len(rhyme_weight), p=rhyme_weight)
+            while True:
+                words = np.random.choice(rhyme_dict[phonID], size=2)
+                # sample two different words
+                if words[0] != words[1]: break
+            ending_words[ind].append(words)
+            # print words
 
+    return ending_words
 
 if __name__ == "__main__":
-    sample_ending_word()
+    num_pairs = 10
+    ending_words = sample_ending_word(num_pairs)
+    for item in ending_words:
+        print "Group"+item
+        for pair in ending_words[item]:
+            print pair
