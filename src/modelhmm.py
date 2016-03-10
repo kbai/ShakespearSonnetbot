@@ -122,7 +122,7 @@ def main():
     # each element in Y contains words in a line, the label of word starts from 0
     Y = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))]
     words = vectorizer.get_feature_names()
-    
+    print len(words)
     hmm = modelhmm(num_of_hidden_states,len(words))
     plen,path,max_path = hmm.viterbi(Y[0])
     hmm.forward_backward(Y)

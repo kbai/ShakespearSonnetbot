@@ -7,10 +7,10 @@ import numpy as np
 	Each grouping schemes returns data sets for training
 
 	Note:
-			filename can only take '../data/shakespear_modified.txt' or
+			filename can only take '../data/shakespear_modified.txt' 
+								   '../data/spenser_modified.txt'
+								   '../data/all_modified.txt'
 '''
-
-
 
 def grouping1(filename):
 
@@ -18,24 +18,24 @@ def grouping1(filename):
     ###	scheme	ABAB CDCD EFEF GG
     ###
 
-    corpus = importasline(filename)
-    vectorizer = CountVectorizer(min_df=1)
-    X = vectorizer.fit_transform(corpus)
-    analyze = vectorizer.build_analyzer()
+    dataSet = importasline(filename)
 
-    dataSet = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))] 
     assert 0 == len(dataSet) % 14, 'number of lines should be multiple of 14' 
-    
-    groupA = dataSet[ 0: :14] + dataSet[ 2: :14]
-    groupB = dataSet[ 1: :14] + dataSet[ 3: :14]
-    groupC = dataSet[ 4: :14] + dataSet[ 6: :14]
-    groupD = dataSet[ 5: :14] + dataSet[ 7: :14]
-    groupE = dataSet[ 8: :14] + dataSet[10: :14]
-    groupF = dataSet[ 9: :14] + dataSet[11: :14]
-    groupG = dataSet[12: :14] + dataSet[13: :14]
+    num_poem = len(dataSet) / 14
+    groupA = [] ; groupB = [] ; groupC = [] ; groupD = [] ; groupE = [] ; groupF = [] ; groupG = []
 
-    assert groupA[0] == dataSet[0], 'groupA[0] == dataSet[0] should hold'
-    assert groupE[1] == dataSet[22], 'groupA[8] == dataSet[22] should hold'
+    for it in range(num_poem):
+    	start = it * 14
+    	groupA.append(dataSet[start + 0]) ; groupA.append(dataSet[start + 2])
+    	groupB.append(dataSet[start + 1]) ; groupB.append(dataSet[start + 3])
+    	groupC.append(dataSet[start + 4]) ; groupC.append(dataSet[start + 6])
+    	groupD.append(dataSet[start + 5]) ; groupD.append(dataSet[start + 7])
+    	groupE.append(dataSet[start + 8]) ; groupE.append(dataSet[start +10])
+    	groupF.append(dataSet[start + 9]) ; groupF.append(dataSet[start +11])
+    	groupG.append(dataSet[start +12]) ; groupG.append(dataSet[start +13])
+
+    assert groupA[1] == dataSet[2], 'groupA[1] == dataSet[2] should hold'
+    assert groupC[1] == dataSet[6], 'groupC[1] == dataSet[6] should hold'
 
     return groupA, groupB, groupC, groupD, groupE, groupF, groupG
 
@@ -45,21 +45,22 @@ def grouping2(filename):
     ###	scheme	AAAA BBBB CCCC DD
     ###
 
-    corpus = importasline(filename)
-    vectorizer = CountVectorizer(min_df=1)
-    X = vectorizer.fit_transform(corpus)
-    analyze = vectorizer.build_analyzer()
+    dataSet = importasline(filename)
 
-    dataSet = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))] 
     assert 0 == len(dataSet) % 14, 'number of lines should be multiple of 14' 
-    
-    groupA = dataSet[ 0: :14] + dataSet[ 1: :14] + dataSet[ 2: :14] + dataSet[ 3: :14]
-    groupB = dataSet[ 4: :14] + dataSet[ 5: :14] + dataSet[ 6: :14] + dataSet[ 7: :14]
-    groupC = dataSet[ 8: :14] + dataSet[ 9: :14] + dataSet[10: :14] + dataSet[11: :14]
-    groupD = dataSet[12: :14] + dataSet[13: :14]
+    num_poem = len(dataSet) / 14
+    groupA = [] ; groupB = [] ; groupC = [] ; groupD = []
 
-    assert groupB[0] == dataSet[4], 'groupB[0] == dataSet[4] should hold'
-    assert groupC[1] == dataSet[22], 'groupC[1] == dataSet[22] should hold'
+    for it in range(num_poem):
+    	start = it * 14
+    	groupA.append(dataSet[start + 0]) ; groupA.append(dataSet[start + 1]) ; groupA.append(dataSet[start + 2]) ; groupA.append(dataSet[start + 3])
+    	groupB.append(dataSet[start + 4]) ; groupB.append(dataSet[start + 5]) ; groupB.append(dataSet[start + 6]) ; groupB.append(dataSet[start + 7]) 
+    	groupC.append(dataSet[start + 8]) ; groupC.append(dataSet[start + 9]) ; groupC.append(dataSet[start +10]) ; groupC.append(dataSet[start +11])
+    	groupD.append(dataSet[start +12]) ; groupD.append(dataSet[start +13])
+
+
+    assert groupB[3] == dataSet[7], 'groupB[3] == dataSet[7] should hold'
+    assert groupC[1] == dataSet[9], 'groupC[1] == dataSet[9] should hold'
 
     return groupA, groupB, groupC, groupD
 
@@ -69,62 +70,33 @@ def grouping3(filename):
     ###	scheme	AAAA AAAA AAAA DD
     ###
 
-    corpus = importasline(filename)
-    vectorizer = CountVectorizer(min_df=1)
-    X = vectorizer.fit_transform(corpus)
-    analyze = vectorizer.build_analyzer()
+    dataSet = importasline(filename)
 
-    dataSet = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))] 
     assert 0 == len(dataSet) % 14, 'number of lines should be multiple of 14' 
-    
-    groupA = dataSet[ 0: :14] + dataSet[ 1: :14] + dataSet[ 2: :14] + dataSet[ 3: :14] + \
-    		 dataSet[ 4: :14] + dataSet[ 5: :14] + dataSet[ 6: :14] + dataSet[ 7: :14] + \
-    		 dataSet[ 8: :14] + dataSet[ 9: :14] + dataSet[10: :14] + dataSet[11: :14]
-    groupB = dataSet[12: :14] + dataSet[13: :14]
+    num_poem = len(dataSet) / 14
+    groupA = [] ; groupB = [] ; groupC = [] ; groupD = []
 
-    assert groupB[1] == dataSet[26], 'groupB[1] == dataSet[26]'
+    for it in range(num_poem):
+    	start = it * 14
+    	groupA.append(dataSet[start + 0]) ; groupA.append(dataSet[start + 1]) ; groupA.append(dataSet[start + 2]) ; groupA.append(dataSet[start + 3]) ;\
+    	groupA.append(dataSet[start + 4]) ; groupA.append(dataSet[start + 5]) ; groupA.append(dataSet[start + 6]) ; groupA.append(dataSet[start + 7]) ;\
+    	groupA.append(dataSet[start + 8]) ; groupA.append(dataSet[start + 9]) ; groupA.append(dataSet[start +10]) ; groupA.append(dataSet[start +11]) ;\
+    	groupB.append(dataSet[start +12]) ; groupB.append(dataSet[start +13])
+
+    assert groupB[1] == dataSet[13], 'groupB[1] == dataSet[13] should hold'
 
     return groupA, groupB
 
-def grouping1_returnword(filename):
-
-	###
-    ###	scheme	ABAB CDCD EFEF GG
-    ###
-
-    corpus = importasline(filename)
-    vectorizer = CountVectorizer(min_df=1)
-    X = vectorizer.fit_transform(corpus)
-    analyze = vectorizer.build_analyzer()
-
-    dataSet = corpus
-    assert 0 == len(dataSet) % 14, 'number of lines should be multiple of 14' 
-    
-    groupA = dataSet[ 0: :14] + dataSet[ 2: :14]
-    groupB = dataSet[ 1: :14] + dataSet[ 3: :14]
-    groupC = dataSet[ 4: :14] + dataSet[ 6: :14]
-    groupD = dataSet[ 5: :14] + dataSet[ 7: :14]
-    groupE = dataSet[ 8: :14] + dataSet[10: :14]
-    groupF = dataSet[ 9: :14] + dataSet[11: :14]
-    groupG = dataSet[12: :14] + dataSet[13: :14]
-
-    assert groupA[0] == dataSet[0], 'groupA[0] == dataSet[0] should hold'
-    assert groupE[1] == dataSet[22], 'groupA[8] == dataSet[22] should hold'
-
-    return groupA, groupB, groupC, groupD, groupE, groupF, groupG
-
-
-
 
 def main():
-    [groupA,groupB,groupC,groupD,groupE,groupF,groupG]=grouping1_returnword('../data/shakespear_modified.txt')
-    np.savetxt('../data/groupA.txt',groupA,fmt='%s')
-    np.savetxt('../data/groupB.txt',groupB,fmt='%s')
-    np.savetxt('../data/groupC.txt',groupC,fmt='%s')
-    np.savetxt('../data/groupD.txt',groupD,fmt='%s')
-    np.savetxt('../data/groupE.txt',groupE,fmt='%s')
-    np.savetxt('../data/groupF.txt',groupF,fmt='%s')
-    np.savetxt('../data/groupG.txt',groupG,fmt='%s')
+    [groupA,groupB,groupC,groupD,groupE,groupF,groupG]=grouping1('../data/shakespear_modified.txt')
+    np.savetxt('../data/grouping1/groupA.txt',groupA,fmt='%s')
+    np.savetxt('../data/grouping1/groupB.txt',groupB,fmt='%s')
+    np.savetxt('../data/grouping1/groupC.txt',groupC,fmt='%s')
+    np.savetxt('../data/grouping1/groupD.txt',groupD,fmt='%s')
+    np.savetxt('../data/grouping1/groupE.txt',groupE,fmt='%s')
+    np.savetxt('../data/grouping1/groupF.txt',groupF,fmt='%s')
+    np.savetxt('../data/grouping1/groupG.txt',groupG,fmt='%s')
 
 
 
