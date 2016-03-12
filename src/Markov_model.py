@@ -19,16 +19,36 @@ class Markov():
         self.epsilon = 0.0
         self.filename = name
         self.Markov_table = np.zeros((self.m_ + 2,self.m_ + 2))
-        self.secondordermarkov_mapping = np.zeros((self.m_ + 2,self.m_ + 2)) - 1
-        self.inversetable = []
 
-        self.generating_markov_trans_table()
+        self.secondordermarkov_mapping = np.zeros((self.m_ + 2,self.m_ + 2)) - 1# initialized to -1
+
+
+        self.inversetable = [] # this is for storing all the bigrams and their corresponding number in single word list
+        #inversetable[i] = (x,y)
+
+        self.generating_markov_trans_table() # generating transition matrix for 1st order markov model
+
         self.generatingsecondordermarkov_mapping()
-        self.generatingsecondordermarkov()
+        #generating 2nd order markov mapping table
+        #secondordermarkov_mapping(i,j)=n
+        #i is the index of the first word
+        #j is the index of the second word
+        #n is the index of the second order markov state
+        #if secondordermarkov_mapping(i,j)=-1 then the bigram (i,j) donot exist in the corpus.
+
+        self.generatingsecondordermarkov_trans_table()
+        #creating inverse mapping from index of second order markov state to indexes of the two words:
+        #inversetable[n]=(i,j)
+        #i is the index of the first word
+        #j is the index of the second word
 
 
 
-    def generatingsecondordermarkov(self):
+    def generatingsecondordermarkov_trans_table(self):
+        '''
+
+        :return:
+        '''
         counter = 0
         self.m2_ = len(self.inversetable)
         self.M2start_ = self.m2_
@@ -37,9 +57,16 @@ class Markov():
 
         for article in self.corpus:
             i = self.secondordermarkov_mapping[self.start_,article[0]]
+            # get the index of the state (start,word[0])
             j = self.secondordermarkov_mapping[article[0],article[1]]
+            # get the index of the state (word[0],word[1])
             self.secondordermarkov_table[i,j]+=1
+            # increase the transition counts i->j  by 1
             self.secondordermarkov_table[self.M2start_,i] += 1
+            # increase the transition counts 2order_start->i by 1
+
+
+            ##do the same thing for end states
             i = self.secondordermarkov_mapping[article[-2],article[-1]]
             j = self.secondordermarkov_mapping[article[-1],self.end_]
             self.secondordermarkov_table[i,j]+=1
@@ -59,6 +86,13 @@ class Markov():
 
 
     def generatingsecondordermarkov_mapping(self):
+        '''
+        this function generates 2 tables:
+        self.secondordermarkov_mapping
+        self.inversetable
+
+        :return:
+        '''
         counter = 0
         for article in self.corpus:
             counter = self.insert(self.start_, article[0],self.secondordermarkov_mapping,counter)
@@ -67,6 +101,14 @@ class Markov():
                 counter = self.insert(article[i], article[i+1],self.secondordermarkov_mapping,counter)
 
     def insert(self,x,y,table,counter):
+        '''
+
+        :param x: the first word of a bigram
+        :param y: the second word of a bigram
+        :param table: the table that table(i,j)=#state
+        :param counter: total number of current states
+        :return: counter+1  if (x,y) is a new state, counter if (x,y) is an exist state
+        '''
         if(table[x,y]<-0.5):
             table[x,y] = counter
             counter += 1
@@ -76,14 +118,19 @@ class Markov():
             return counter
 
     def generating_markov_trans_table(self):
+        '''
+
+        :return:count all the transition occurrances of all the  sentences in a corpus.
+        '''
         for article in self.corpus:
-            self.Markov_table[self.start_, article[0]] += 1
-            self.Markov_table[article[-1],self.end_] += 1
+            self.Markov_table[self.start_, article[0]] += 1  # count the starting state transition
+            self.Markov_table[article[-1],self.end_] += 1    #
             for i in range(len(article) - 1):
                 self.Markov_table[article[i],article[i+1]] += 1
                 print(article[i],article[i+1])
         for l in range(self.m_+1):
-            self.Markov_table[l,:] = self.Markov_table[l,:]/np.sum(self.Markov_table[l,:])
+            self.Markov_table[l,:] = self.Markov_table[l,:]/np.sum(self.Markov_table[l,:]) #normalize to make sure that
+            #the probabilities sum up to 1
 
 
     def savemodel(self):
@@ -107,6 +154,10 @@ class Markov():
 
 
     def generating_random_line(self):
+        '''
+        this function generates a random line for the poem.
+        :return:
+        '''
         line = []
         linew = []
         currentstate = self.M2start_
@@ -120,11 +171,6 @@ class Markov():
         return line,linew
 
 
-
-    def find_max_Y(self):
-        for line in self.corpus:
-            plen, path, max_path = self.viterbi(line)
-            self.y.append(max_path)
 
 
 def main():
