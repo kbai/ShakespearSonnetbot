@@ -3,6 +3,7 @@ import numpy as np
 from importdata import importasline
 from sklearn.feature_extraction.text import CountVectorizer
 import pandas as pd
+import nltk 
 
 
 class modelhmm():
@@ -24,7 +25,7 @@ class modelhmm():
             self.trans_[i, :] = self.trans_[i, :] / np.sum(self.trans_[i, :])
 
 
-        print(self.trans_)
+        #print(self.trans_)
         # we store transition possibility from starting state and to end state
         # at the end of the transition matrix
     def savemodel(self):
@@ -40,6 +41,45 @@ class modelhmm():
     def analyzing_word(self,words):
         df = pd.DataFrame((self.obs_).transpose(),index=words)
         df.to_csv('../model/'+self.filename+'withword.txt',index=True,header=True,sep=' ')
+
+    def analysing_obs(self,word):
+        '''
+        this function for analysing the obs_ matrix to get some insight of what
+        each different state is representing
+        :return:
+        '''
+
+        self.most_frequent_word = np.zeros((self.m_,self.n_))
+        #normalize by word frequency:
+
+        freq_count = np.zeros((self.n_,))
+        obs_normalize = np.zeros((self.m_,self.n_))
+
+        for sentence in self.corpus:
+            for iword in sentence:
+                freq_count[iword]+=1
+
+        for iline in range(self.n_):
+            obs_normalize[:,iline] = self.obs_[:,iline]/freq_count[iline]
+
+        for istate in range(self.m_):
+            self.most_frequent_word[istate,:] = np.argsort(obs_normalize[istate,:])
+            freq = [word[i] for i in self.most_frequent_word[istate,-200:].astype(int)]
+            self.stat_pos_tag(freq)
+
+           # print [obs_normalize[istate,i] for i in self.most_frequent_word[istate,-10:].astype(int)]
+    def stat_pos_tag(self,words):
+
+        wordtag=nltk.pos_tag(words,tagset='universal')
+        pos = [x[1] for x in wordtag]
+        stat = nltk.FreqDist(pos)
+        print stat.most_common()
+
+
+
+
+
+
 
 
 
@@ -241,21 +281,6 @@ class modelhmm():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     def find_max_Y(self):
         for line in self.corpus:
             plen, path, max_path = self.viterbi(line)
@@ -264,7 +289,7 @@ class modelhmm():
 
 def main():
 
-    corpus = importasline('../data/groupA.txt',ignorehyphen = True)
+    corpus = importasline('../data/grouping1/groupA.txt',ignorehyphen = True)
 
     vectorizer = CountVectorizer(min_df=1)
     X = vectorizer.fit_transform(corpus)
@@ -272,16 +297,17 @@ def main():
     Y = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))]
     print(Y)
     words = vectorizer.get_feature_names()
-    num_of_hidden_states = 500
+    num_of_hidden_states = 5
     print(len(words))
     print(Y)
-    hmm = modelhmm(num_of_hidden_states, len(words), Y, 'modelnhidden8groupA')
-    for i in range(100):
-        print(i)
-        print(hmm.update_state_corpus(Y))
-    hmm.savemodel()
+    hmm = modelhmm(num_of_hidden_states, len(words), Y, 'modelnhidden5groupA')
+    if(False):
+        for i in range(500):
+            print(i)
+            print(hmm.update_state_corpus(Y))
+        hmm.savemodel()
     #print(hmm.obs_[:,Y[0]])
-    print(hmm.trans_)
+        print(hmm.trans_)
     hmm.loadmodel()
     print('transloaded',hmm.trans_.shape)
 
@@ -295,6 +321,13 @@ def main():
 
 
     hmm.analyzing_word(words)
+    hmm.analysing_obs(words)
+    wordtag=nltk.pos_tag(words,tagset='universal')
+    pos = [x[1] for x in wordtag]
+    stat = nltk.FreqDist(pos)
+    print stat.most_common()
+
+
 
 
 def random_distr(l):
