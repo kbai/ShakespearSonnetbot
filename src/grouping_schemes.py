@@ -67,7 +67,7 @@ def grouping2(filename):
 def grouping3(filename):
 
 	###
-    ###	scheme	AAAA AAAA AAAA DD
+    ###	scheme	AAAA AAAA AAAA BB
     ###
 
     dataSet = importasline(filename)
@@ -97,12 +97,6 @@ def main():
     np.savetxt('../data/grouping1/groupE.txt',groupE,fmt='%s')
     np.savetxt('../data/grouping1/groupF.txt',groupF,fmt='%s')
     np.savetxt('../data/grouping1/groupG.txt',groupG,fmt='%s')
-
-
-
-
-
-
 
 if __name__ == "__main__":
     main()
