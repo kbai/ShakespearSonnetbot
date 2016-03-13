@@ -39,6 +39,11 @@ class modelhmm():
         np.savetxt('../reversemodel_counting/'+self.filename+'trans.txt',self.trans_)
         np.savetxt('../reversemodel_counting/'+self.filename+'obs.txt',self.obs_)
 
+    def getObjProbabilty(self):
+        self.loadmodel()
+        
+        return
+
 
     def loadmodel(self):
         self.trans_ = np.loadtxt('../reversemodel_counting/'+self.filename+'trans.txt')
@@ -48,7 +53,6 @@ class modelhmm():
     def analyzing_word(self,words):
         df = pd.DataFrame((self.obs_).transpose(),index=words)
         df.to_csv('../reversemodel_counting/'+self.filename+'withword.txt',index=True,header=True,sep=' ')
-
 
 
     def viterbi(self, data):
@@ -83,6 +87,7 @@ class modelhmm():
 
         return plen, path, max_path
 
+
     def forward_backward_alg(self, observ):
         '''
         :param observ: one article, can be a line or a poem
@@ -111,7 +116,9 @@ class modelhmm():
 
         for i in range(num_obs):
             p_margin[:, i] = alpha[:, i] * beta[:, i] / (np.dot(alpha[:, i], beta[:, i]) + self.epsilon)
+
         return alpha, beta, p_margin
+
 
     def update_state(self, observ):
         '''
@@ -153,6 +160,7 @@ class modelhmm():
             for j in range(len(observ)):
                 self.obs_[i, observ[j]] += p[i, j]
             self.obs_[i, :] /= (np.sum(self.obs_[i, :]) + self.epsilon)
+
 
     def update_state_corpus(self, corpus):
         '''
@@ -206,6 +214,7 @@ class modelhmm():
         self.obs_ = obs_tmp
         return log_prod_p
 
+
     def trainHHM(self, Y):
         # tolerance and maximal step
         eps = 1e-4
@@ -224,6 +233,7 @@ class modelhmm():
 
         return logp1
 
+
     def generating_random_line(self):
         line = []
         linew = []
@@ -236,6 +246,7 @@ class modelhmm():
             linew.append(word)
 
         return line,linew
+
 
     def generating_random_line_end(self, start_word):
 
@@ -271,6 +282,7 @@ class modelhmm():
 
         return line_pocket,linew_pocket
 
+
     def generating_sequence(self,length):
         seq = []
         word = []
@@ -298,6 +310,7 @@ class modelhmm():
             anc_seq[i,self.m_] = np.argmax(ptmp)
         print(p_seq)
         print(anc_seq)
+
 
     def find_max_Y(self):
         for line in self.corpus:
@@ -411,17 +424,20 @@ def poem_generate(num_of_hidden_states, num_pairs):
 
 def main():
 
-
-    ###Nummber of hidden state : 5 finished
-    ###Nummber of hidden state : 10 finished
-
-    print 'Start'
+    #####
+    ###Number of hidden state :  5 finished
+    ###Number of hidden state : 10 finished
+    ###Number of hidden state : 20 finished
+    ###Number of hidden state : 40 finished
+    ###Numver of hidden state : 80 finished
+    ''' This is codes for poem generation and 
+    ####
     NeedGeneration = True
     num_pairs = 10
     num_of_hidden_states = 20
     ###
     poem_generate(num_of_hidden_states, num_pairs)
-
+    '''
     print 'finished'
 
     ###num_pairs = 10
