@@ -35,6 +35,7 @@ class modelhmm():
         # we store transition possibility from starting state and to end state
         # at the end of the transition matrix
     def savemodel(self):
+        print self.filename, 'self.filename'
         np.savetxt('../reversemodel_counting/'+self.filename+'trans.txt',self.trans_)
         np.savetxt('../reversemodel_counting/'+self.filename+'obs.txt',self.obs_)
 
@@ -170,6 +171,7 @@ class modelhmm():
         log_prod_p = 0.0
 
         for observ in corpus:
+
             alpha, beta, p = self.forward_backward_alg(observ)
             px = np.sum(alpha[:,-1]*beta[:,-1]) # calculating p(x)
             log_prod_p += np.log(px)/np.log(10) # multiply all p(x_i)
@@ -409,10 +411,19 @@ def poem_generate(num_of_hidden_states, num_pairs):
 
 def main():
 
-    num_pairs = 10
-    num_of_hidden_states = 40
 
+    ###Nummber of hidden state : 5 finished
+    ###Nummber of hidden state : 10 finished
+
+    print 'Start'
+    NeedGeneration = True
+    num_pairs = 10
+    num_of_hidden_states = 20
+    ###
     poem_generate(num_of_hidden_states, num_pairs)
+
+    print 'finished'
+
     ###num_pairs = 10
     ###num_of_hidden_states = 10
     ###poem_generate(num_of_hidden_states, num_pairs)
