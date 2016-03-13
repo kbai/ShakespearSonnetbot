@@ -3,14 +3,16 @@ import numpy as np
 from importdata import importasline
 from sklearn.feature_extraction.text import CountVectorizer
 import pandas as pd
-import nltk 
+import nltk
+import matplotlib.mlab as mlab
+import matplotlib.pyplot as plt
 
 
 class modelhmm():
     def __init__(self, m, n, corpus_in,name):
         self.obs_ = np.random.rand(m, n)
         self.trans_ = np.random.rand(m + 2, m + 2)
-        self.m_ = m  # number of POS
+        self.m_ = m  # number of states
         self.n_ = n  # number of words
         self.start_ = m  # we put start token as the m+1 th token
         self.end_ = m + 1  # we put end token as the m+2 th token
@@ -49,23 +51,42 @@ class modelhmm():
         :return:
         '''
 
-        self.most_frequent_word = np.zeros((self.m_,self.n_))
+        self.most_frequent_word = np.zeros((self.m_,self.n_),dtype=int)
         #normalize by word frequency:
 
-        freq_count = np.zeros((self.n_,))
+        freq_count = np.zeros((self.n_,),dtype=int)
         obs_normalize = np.zeros((self.m_,self.n_))
+        position_occrrance = np.zeros((self.n_,8),dtype = int)
 
         for sentence in self.corpus:
-            for iword in sentence:
+            for index,iword in enumerate(sentence):
                 freq_count[iword]+=1
+                position_occrrance[iword,min(index,7)]+=1
 
         for iline in range(self.n_):
             obs_normalize[:,iline] = self.obs_[:,iline]/freq_count[iline]
 
+        freqarray = []
+        occurarray = []
+
         for istate in range(self.m_):
             self.most_frequent_word[istate,:] = np.argsort(obs_normalize[istate,:])
-            freq = [word[i] for i in self.most_frequent_word[istate,-200:].astype(int)]
+            freq = [word[i] for i in self.most_frequent_word[istate,-200:]]
+            occur = [np.argmax(position_occrrance[i,:]) for i in self.most_frequent_word[istate,-200:]]
+            freqarray.append(freq)
+            occurarray.append(occur)
             self.stat_pos_tag(freq)
+        freqarray = np.array(freqarray)
+        occurarray = np.array(occurarray)
+        np.savetxt('rankingsofwords.txt',freqarray.transpose(),fmt='%10s',delimiter='\t\t')
+        np.savetxt('occurancewords.txt',occurarray.transpose())
+        commonparam = dict(bins=20,normed=False)
+        print(occurarray.shape)
+        n, bins, patches = plt.hist((occurarray[0,:],occurarray[1,:],occurarray[2,:],occurarray[3,:],occurarray[4,:]),**commonparam )
+
+
+
+        plt.show()
 
            # print [obs_normalize[istate,i] for i in self.most_frequent_word[istate,-10:].astype(int)]
     def stat_pos_tag(self,words):
@@ -142,7 +163,7 @@ class modelhmm():
         p_margin = np.zeros((num_state, num_obs))
 
         for i in range(num_obs):
-            p_margin[:, i] = alpha[:, i] * beta[:, i] / (np.dot(alpha[:, i], beta[:, i]) + self.epsilon)
+            p_margin[:, i] = alpha[:, i] * beta[:, i] / (np.dot(alpha[:, i], beta[:, i]) )
         return alpha, beta, p_margin
 
     def update_state(self, observ):
@@ -167,24 +188,24 @@ class modelhmm():
 
 
         p_start_tmp = self.trans_[self.start_, :self.m_] * self.obs_[:, observ[0]] * beta[:, 0]
-        p_start = p_start_tmp / (np.sum(p_start_tmp) + self.epsilon)
+        p_start = p_start_tmp / (np.sum(p_start_tmp) )
 
         p_end_tmp = self.trans_[:self.m_, self.end_] * alpha[:, -1]
-        p_end = p_end_tmp / (np.sum(p_end_tmp) + self.epsilon)
+        p_end = p_end_tmp / (np.sum(p_end_tmp) )
 
         tmp_mat[:self.m_, :self.m_] = marginal_p
         tmp_mat[self.start_, :self.m_] = p_start
         tmp_mat[:self.m_, self.end_] = p_end
-        self.obs_[:, :] = 1e-100
+        self.obs_[:, :] = self.epsilon
         self.trans_[:, :] = 0.0
 
         for i in range(self.m_ + 1):
-            self.trans_[i, :] = (tmp_mat[i, :] + 1e-100)/( np.sum(tmp_mat[i, :]+1e-100))
+            self.trans_[i, :] = (tmp_mat[i, :] + self.epsilon)/( np.sum(tmp_mat[i, :]+self.epsilon))
 
         for i in range(self.m_):
             for j in range(len(observ)):
                 self.obs_[i, observ[j]] += p[i, j]
-            self.obs_[i, :] /= (np.sum(self.obs_[i, :]) + self.epsilon)
+            self.obs_[i, :] /= (np.sum(self.obs_[i, :]))
 
     def update_state_corpus(self, corpus):
         '''
@@ -199,7 +220,7 @@ class modelhmm():
         p_start_all = np.zeros(self.m_)
         p_end_all = np.zeros(self.m_)
         obs_tmp = np.zeros((self.m_,self.n_))
-        obs_tmp[:,:] = 1e-100
+        obs_tmp[:,:] = self.epsilon
         log_prod_p = 0.0
 
         for observ in corpus:
@@ -231,7 +252,7 @@ class modelhmm():
         tmp_mat[:self.m_,self.end_] = p_end_all
 
         for i in range(self.m_ + 1):
-            self.trans_[i, :] = (tmp_mat[i, :] + 1e-100)/( np.sum(tmp_mat[i, :]+1e-100) )
+            self.trans_[i, :] = (tmp_mat[i, :] + self.epsilon)/( np.sum(tmp_mat[i, :]+self.epsilon) )
         for i in range(self.m_):
             obs_tmp[i, :] /= (np.sum(obs_tmp[i, :]))
         self.obs_ = obs_tmp
