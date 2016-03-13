@@ -1,7 +1,7 @@
 from graphviz import Digraph
 import numpy as np
 
-f = Digraph('Markov_Chain_Diagram', filename='Markov', format = 'png')
+f = Digraph('Markov_Chain_Diagram', format = 'png')
 f.body.extend(['rankdir=LR', 'size="10, 10"'])
 
 A = np.loadtxt('../model/modelnhidden5groupAtrans.txt')
@@ -26,4 +26,4 @@ for outer_it in range(DIM):
 			if(A[outer_it,inner_it]>1e-4):
 				f.edge('{0}'.format(outer_it), '{0}'.format(inner_it), label= str(round(A[outer_it,inner_it], 3)))
 
-f.view()
+f.render(filename = 'Markov{0}'.format(DIM), view = True)
