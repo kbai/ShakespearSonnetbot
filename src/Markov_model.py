@@ -9,7 +9,7 @@ np.set_printoptions(threshold=40)
 class Markov():
     def __init__(self, m, corpus_in,name):
         self.trans_ = np.random.rand(m + 2, m + 2)
-        self.m_ = m  # number of POS
+        self.m_ = m  # number of words
         self.start_ = m  # we put start token as the m+1 th token
         self.end_ = m + 1  # we put end token as the m+2 th token
         self.trans_[:, self.start_] = 0.0
@@ -19,7 +19,10 @@ class Markov():
         self.epsilon = 0.0
         self.filename = name
         self.Markov_table = np.zeros((self.m_ + 2,self.m_ + 2))
-
+        '''
+        print sel.m_
+        '''
+        print 'START'
         self.secondordermarkov_mapping = np.zeros((self.m_ + 2,self.m_ + 2)) - 1# initialized to -1
 
 
@@ -45,10 +48,6 @@ class Markov():
 
 
     def generatingsecondordermarkov_trans_table(self):
-        '''
-
-        :return:
-        '''
         counter = 0
         self.m2_ = len(self.inversetable)
         self.M2start_ = self.m2_
@@ -76,14 +75,16 @@ class Markov():
                     i = self.secondordermarkov_mapping[article[k],article[k+1]]
                     j = self.secondordermarkov_mapping[article[k+1],article[k+2]]
                     self.secondordermarkov_table[i,j]+=1
-
+        
         for l in range(self.m2_+1):
+            '''
             if(np.sum(self.secondordermarkov_table[l,:])==0):
                 print(self.inversetable[l])
             else:
                 print('yes')
+            '''
             self.secondordermarkov_table[l,:] = self.secondordermarkov_table[l,:]/np.sum(self.secondordermarkov_table[l,:])
-
+            
 
     def generatingsecondordermarkov_mapping(self):
         '''
@@ -94,7 +95,9 @@ class Markov():
         :return:
         '''
         counter = 0
+        print len(self.corpus), 'len(self.corpus)'
         for article in self.corpus:
+            ###print article, 'article'
             counter = self.insert(self.start_, article[0],self.secondordermarkov_mapping,counter)
             counter = self.insert(article[-1], self.end_,self.secondordermarkov_mapping,counter)
             for i in range(len(article) - 1):
@@ -124,10 +127,10 @@ class Markov():
         '''
         for article in self.corpus:
             self.Markov_table[self.start_, article[0]] += 1  # count the starting state transition
-            self.Markov_table[article[-1],self.end_] += 1    #
+            self.Markov_table[article[-1], self.end_] += 1   #
             for i in range(len(article) - 1):
-                self.Markov_table[article[i],article[i+1]] += 1
-                print(article[i],article[i+1])
+                self.Markov_table[article[i],article[i + 1]] += 1
+                ###print(article[i],article[i+1])
         for l in range(self.m_+1):
             self.Markov_table[l,:] = self.Markov_table[l,:]/np.sum(self.Markov_table[l,:]) #normalize to make sure that
             #the probabilities sum up to 1
@@ -146,11 +149,6 @@ class Markov():
     def analyzing_word(self,words):
         df = pd.DataFrame((self.obs_).transpose(),index=words)
         df.to_csv('../model/'+self.filename+'withword.txt',index=True,header=True,sep=' ')
-
-
-
-
-
 
 
     def generating_random_line(self):
@@ -175,7 +173,7 @@ class Markov():
 
 def main():
 
-    corpus = importasline('../data/shakespear_modified.txt',ignorehyphen = True)
+    corpus = importasline('../data/shakespear_modified.txt', ignorehyphen = True)
    
 
     vectorizer = CountVectorizer(min_df=1)
@@ -183,17 +181,17 @@ def main():
     analyze = vectorizer.build_analyzer()
     Y = [[vectorizer.vocabulary_[x] for x in analyze(corpus[i])] for i in range(len(corpus))]
     words = vectorizer.get_feature_names()
-    num_of_hidden_states = 1000
     print(len(words))
-    hmm = Markov( len(words), Y, 'modelnhidden1000groupA')
-    print(len(hmm.inversetable))
+    mm = Markov(len(words), Y, 'modelnhidden1000groupA')
+    print len(mm.inversetable), 'len(mm.inversetable)'
+    print mm.inversetable[0: 4], 'mm.inversetable[0: 4]'
     for i in range(20):
-        [line,linew]=hmm.generating_random_line()
-        print(linew)
+        [line,linew] = mm.generating_random_line()
+        ###print linew, ': linew' 
         robotpoem = ''
         for j in linew[:-1]:
             robotpoem+=' '+words[j]+' '
-        print(robotpoem)
+        ###print robotpoem, ': robotpoem'
             
     #print(corpus)
     #print(Y)
