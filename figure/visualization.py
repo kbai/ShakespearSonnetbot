@@ -26,4 +26,4 @@ for outer_it in range(DIM):
 			if(A[outer_it,inner_it]>1e-4):
 				f.edge('{0}'.format(outer_it), '{0}'.format(inner_it), label= str(round(A[outer_it,inner_it], 3)))
 
-f.render(filename = 'Markov{0}'.format(DIM), view = True)
+f.render(filename = 'HiddenMarkov{0}'.format(DIM), view = True)
