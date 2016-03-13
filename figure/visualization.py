@@ -5,6 +5,7 @@ f = Digraph('Markov_Chain_Diagram', format = 'png')
 f.body.extend(['rankdir=LR', 'size="10, 10"'])
 
 A = np.loadtxt('../model/modelnhidden5groupAtrans.txt')
+
 f.attr('node', shape='doublecircle')
 f.node('START')
 f.node('END')

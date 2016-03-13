@@ -146,7 +146,7 @@ class modelhmm():
         self.trans_[:, :] = 0.0
 
         for i in range(self.m_ + 1):
-            self.trans_[i, :] = (tmp_mat[i, :] + 1e-100)/( np.sum(tmp_mat[i, :]+1e-100))
+            self.trans_[i, :] = (tmp_mat[i, :] + 1e-100)/( np.sum(tmp_mat[i, :] + 1e-100))
 
         for i in range(self.m_):
             for j in range(len(observ)):
@@ -408,12 +408,18 @@ def poem_generate(num_of_hidden_states, num_pairs):
 
 
 def main():
+
+    num_pairs = 10
     num_of_hidden_states = 40
-    num_pairs = 10
+
     poem_generate(num_of_hidden_states, num_pairs)
-    num_pairs = 10
-    num_of_hidden_states = 80
-    poem_generate(num_of_hidden_states, num_pairs)
+    ###num_pairs = 10
+    ###num_of_hidden_states = 10
+    ###poem_generate(num_of_hidden_states, num_pairs)
+    
+    ###num_pairs = 10
+    ###num_of_hidden_states = 20
+    ###poem_generate(num_of_hidden_states, num_pairs)
 
 def random_distr(l):
     r = random.uniform(0, 1)
