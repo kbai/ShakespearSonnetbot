@@ -1,4 +1,4 @@
-PWD /Users/yerong/Desktop/tmp/report
+PWD /Users/yerong/Desktop/tmp/ShakespearSonnetbot/report
 INPUT /usr/local/texlive/2015/texmf.cnf
 INPUT /usr/local/texlive/2015/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2015/texmf-var/web2c/pdftex/pdflatex.fmt
@@ -285,6 +285,9 @@ INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/palatino/pplb7t.tfm
 INPUT ./section/hiddenMarkov.tex
 INPUT ./section/hiddenMarkov.tex
+INPUT ./figure/probability.png
+INPUT ./figure/probability.png
+INPUT ./figure/probability.png
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
@@ -327,8 +330,6 @@ INPUT ./section/markov.tex
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/palatino/pplbi7t.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/vf/adobe/palatino/pplb7t.vf
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
-INPUT /usr/local/texlive/2015/texmf-dist/fonts/vf/adobe/palatino/pplbi7t.vf
-INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/palatino/pplbi8r.tfm
 INPUT ./section/trials.tex
 INPUT ./section/trials.tex
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ts1ppl.fd
@@ -339,6 +340,8 @@ INPUT ./section/visualization.tex
 INPUT ./figure/hiddenstate_len_distri.png
 INPUT ./figure/hiddenstate_len_distri.png
 INPUT ./figure/hiddenstate_len_distri.png
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/vf/adobe/palatino/pplbi7t.vf
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/palatino/pplbi8r.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/vf/adobe/palatino/pplr8c.vf
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/mathpazo/fplmr.tfm
 INPUT ./figure/hiddenstates_position_in_the_sentence.png
@@ -358,10 +361,10 @@ INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/courier/pcrr8c.tfm
-INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/courier/pcrro7t.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/vf/adobe/courier/pcrr7t.vf
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/vf/adobe/courier/pcrr8c.vf
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/courier/pcrro7t.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/vf/adobe/courier/pcrro7t.vf
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/courier/pcrro8r.tfm
 INPUT ./section/conclusion.tex

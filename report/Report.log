@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  14 MAR 2016 08:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  14 MAR 2016 10:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1011,17 +1011,23 @@ Overfull \hbox (27.94075pt too wide) in paragraph at lines 13--14
 )
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 42.
- (./section/hiddenMarkov.tex) [1{/usr/local/texlive/2015/texmf-var/fonts/map/pd
-ftex/updmap/pdftex.map}
+ (./section/hiddenMarkov.tex
+<./figure/probability.png, id=94, 578.16pt x 433.62pt>
+File: ./figure/probability.png Graphic file (type png)
 
-] (./section/markov.tex
+<use ./figure/probability.png>
+Package pdftex.def Info: ./figure/probability.png used on input line 7.
+(pdftex.def)             Requested size: 281.85587pt x 211.39055pt.
+ [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+
+]) (./section/markov.tex
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 3.
 
 LaTeX Font Info:    Font shape `OT1/ppl/bx/it' in size <10> not available
 (Font)              Font shape `OT1/ppl/b/it' tried instead on input line 5.
-) [2] (./section/trials.tex
+[2 <./figure/probability.png>]) (./section/trials.tex
 LaTeX Font Info:    Try loading font information for TS1+ppl on input line 4.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ts1ppl.fd
@@ -1036,15 +1042,15 @@ Package hyperref Warning: Difference (2) between bookmark levels is greater
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 3.
 
-<./figure/hiddenstate_len_distri.png, id=119, 578.16pt x 433.62pt>
+<./figure/hiddenstate_len_distri.png, id=116, 578.16pt x 433.62pt>
 File: ./figure/hiddenstate_len_distri.png Graphic file (type png)
 
 <use ./figure/hiddenstate_len_distri.png>
 Package pdftex.def Info: ./figure/hiddenstate_len_distri.png used on input line
  8.
 (pdftex.def)             Requested size: 234.8775pt x 176.15768pt.
- [3 <./figure/hiddenstate_len_distri.png>]
-<./figure/hiddenstates_position_in_the_sentence.png, id=127, 578.16pt x 433.62p
+ [3]
+<./figure/hiddenstates_position_in_the_sentence.png, id=129, 578.16pt x 433.62p
 t>
 File: ./figure/hiddenstates_position_in_the_sentence.png Graphic file (type png
 )
@@ -1057,88 +1063,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--26
 \OT1/ppl/m/n/10 sen-tence.
  []
 
-! Undefined control sequence.
-<recently read> \â
-                  
-l.29 ...onjunction words like \textbf{\â€˜and\â€™}
-                                                  ,\textbf{\â€™or\â€™} are m...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
+[4 <./figure/hiddenstate_len_distri.png>]
+Missing character: There is no â in font pplb7t!
 Missing character: There is no € in font pplb7t!
 Missing character: There is no ˜ in font pplb7t!
-! Undefined control sequence.
-<argument> \â€˜and\â
-                    €™
-l.29 ...onjunction words like \textbf{\â€˜and\â€™}
-                                                  ,\textbf{\â€™or\â€™} are m...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
+Missing character: There is no â in font pplb7t!
 Missing character: There is no € in font pplb7t!
 Missing character: There is no ™ in font pplb7t!
-! Undefined control sequence.
-<recently read> \â
-                  
-l.29 ...e \textbf{\â€˜and\â€™},\textbf{\â€™or\â€™}
-                                                   are more likely to be und...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-Missing character: There is no € in font pplb7t!
-Missing character: There is no ™ in font pplb7t!
-! Undefined control sequence.
-<argument> \â€™or\â
-                   €™
-l.29 ...e \textbf{\â€˜and\â€™},\textbf{\â€™or\â€™}
-                                                   are more likely to be und...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
+Missing character: There is no â in font pplb7t!
 Missing character: There is no € in font pplb7t!
 Missing character: There is no ™ in font pplb7t!
 
-Package caption Warning: \label without proper \caption on input line 21.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:position' on page 4 undefined on input line 29.
-
-<./figure/hiddenstate_partofspeechtag.png, id=129, 578.16pt x 433.62pt>
+<./figure/hiddenstate_partofspeechtag.png, id=137, 578.16pt x 433.62pt>
 File: ./figure/hiddenstate_partofspeechtag.png Graphic file (type png)
 
 <use ./figure/hiddenstate_partofspeechtag.png>
 Package pdftex.def Info: ./figure/hiddenstate_partofspeechtag.png used on input
  line 32.
 (pdftex.def)             Requested size: 234.8775pt x 176.15768pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 Missing character: There is no â in font pplr7t!
 Missing character: There is no € in font pplr7t!
 Missing character: There is no ™ in font pplr7t!
-<./figure/numberofsyllablesinstates.png, id=130, 578.16pt x 433.62pt>
+ [5 <./figure/hiddenstates_position_in_the_sentence.png> <./figure/hiddenstate_
+partofspeechtag.png>]
+<./figure/numberofsyllablesinstates.png, id=146, 578.16pt x 433.62pt>
 File: ./figure/numberofsyllablesinstates.png Graphic file (type png)
 
 <use ./figure/numberofsyllablesinstates.png>
 Package pdftex.def Info: ./figure/numberofsyllablesinstates.png used on input l
 ine 46.
 (pdftex.def)             Requested size: 234.8775pt x 176.15768pt.
- [4 <./figure/hiddenstates_position_in_the_sentence.png>]) (./section/generatio
-n.tex
+) (./section/generation.tex
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 4.
@@ -1147,13 +1102,12 @@ Package hyperref Warning: Difference (2) between bookmark levels is greater
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 4.
 
-[5 <./figure/hiddenstate_partofspeechtag.png> <./figure/numberofsyllablesinstat
-es.png>]) (./section/additional.tex [6]
+[6 <./figure/numberofsyllablesinstates.png>]) (./section/additional.tex
 LaTeX Font Info:    Try loading font information for TS1+pcr on input line 10.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
-)
+) [7]
 LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <10> not available
 (Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 20.
 
@@ -1163,17 +1117,14 @@ k-age, the \OT1/ppl/m/it/10 Py-Hy-phen \OT1/ppl/m/n/10 pack-age and our own-wri
 tten func-tion \OT1/pcr/m/n/10 count[]syllables()
  []
 
-[7] [8]) (./section/conclusion.tex) [9]
+[8]) (./section/conclusion.tex) [9] [10]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 77.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 77.
  (./Report.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 77.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 77.
 Package rerunfilecheck Info: File `Report.out' has not changed.
-(rerunfilecheck)             Checksum: D1378F8338EB76CC91CECEA82A49286F;1434.
-
-
-LaTeX Warning: There were undefined references.
+(rerunfilecheck)             Checksum: 7C544E6B1543AE7D18C592C0748F433B;1434.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -1181,13 +1132,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 77.
  ) 
 Here is how much of TeX's memory you used:
- 22178 strings out of 493089
- 421584 string characters out of 6134842
- 519086 words of memory out of 5000000
- 25111 multiletter control sequences out of 15000+600000
+ 22186 strings out of 493089
+ 421754 string characters out of 6134842
+ 517417 words of memory out of 5000000
+ 25116 multiletter control sequences out of 15000+600000
  22875 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,17n,67p,1017b,1743s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,17n,67p,1017b,1253s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1204,10 +1155,10 @@ nts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
 e1/urw/palatino/uplbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw
 /palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palati
 no/uplri8a.pfb>
-Output written on Report.pdf (9 pages, 307485 bytes).
+Output written on Report.pdf (10 pages, 333912 bytes).
 PDF statistics:
- 302 PDF objects out of 1000 (max. 8388607)
- 265 compressed objects within 3 object streams
- 99 named destinations out of 1000 (max. 500000)
- 201 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 310 PDF objects out of 1000 (max. 8388607)
+ 270 compressed objects within 3 object streams
+ 101 named destinations out of 1000 (max. 500000)
+ 206 words of extra memory for PDF output out of 10000 (max. 10000000)
 

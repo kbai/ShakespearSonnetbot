@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  14 MAR 2016 08:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  14 MAR 2016 10:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2034,24 +2034,25 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.21  \begin{wrapfigure}
-                        [15]{l}{0.5\textwidth}\label{fig:position}
+                        [16]{l}{0.52\textwidth}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 Missing character: There is no [ in font nullfont!
 Missing character: There is no 1 in font nullfont!
-Missing character: There is no 5 in font nullfont!
+Missing character: There is no 6 in font nullfont!
 Missing character: There is no ] in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no 0 in font nullfont!
 Missing character: There is no . in font nullfont!
 Missing character: There is no 5 in font nullfont!
+Missing character: There is no 2 in font nullfont!
 ! Missing number, treated as zero.
 <to be read again> 
                    }
-l.21  \begin{wrapfigure}[15]{l}{0.5\textwidth}
-                                              \label{fig:position}
+l.21  \begin{wrapfigure}[16]{l}{0.52\textwidth}
+                                               
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
 look up `weird error' in the index to The TeXbook.)
@@ -2059,8 +2060,8 @@ look up `weird error' in the index to The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    }
-l.21  \begin{wrapfigure}[15]{l}{0.5\textwidth}
-                                              \label{fig:position}
+l.21  \begin{wrapfigure}[16]{l}{0.52\textwidth}
+                                               
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
 I'll assume that you meant to say pt, for printer's points.
@@ -2070,7 +2071,7 @@ two letters. (See Chapter 27 of The TeXbook.)
 
 ! Undefined control sequence.
 l.23  \includegraphics
-                      [width=0.5\textwidth]{./figure/hiddenstates_position_i...
+                      [width=0.52\textwidth]{./figure/hiddenstates_position_...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2087,11 +2088,12 @@ Missing character: There is no = in font nullfont!
 Missing character: There is no 0 in font nullfont!
 Missing character: There is no . in font nullfont!
 Missing character: There is no 5 in font nullfont!
+Missing character: There is no 2 in font nullfont!
 ! Missing number, treated as zero.
 <to be read again> 
                    ]
-l.23  \includegraphics[width=0.5\textwidth]
-                                           {./figure/hiddenstates_position_i...
+l.23  \includegraphics[width=0.52\textwidth]
+                                            {./figure/hiddenstates_position_...
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
 look up `weird error' in the index to The TeXbook.)
@@ -2099,8 +2101,8 @@ look up `weird error' in the index to The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    ]
-l.23  \includegraphics[width=0.5\textwidth]
-                                           {./figure/hiddenstates_position_i...
+l.23  \includegraphics[width=0.52\textwidth]
+                                            {./figure/hiddenstates_position_...
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
 I'll assume that you meant to say pt, for printer's points.
@@ -2133,7 +2135,7 @@ Missing character: There is no s in font nullfont!
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.23 ...idth=0.5\textwidth]{./figure/hiddenstates_
+l.23 ...dth=0.52\textwidth]{./figure/hiddenstates_
                                                   position_in_the_sentence.png}
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -2622,57 +2624,14 @@ Missing character: There is no l in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no k in font nullfont!
 Missing character: There is no e in font nullfont!
-! Undefined control sequence.
-<recently read> \â
-                  
-l.28 ...onjunction words like \textbf{\â€˜and\â€™}
-                                                  ,\textbf{\â€™or\â€™} are m...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
+Missing character: There is no â in font cmbx10!
 Missing character: There is no € in font cmbx10!
 Missing character: There is no ˜ in font cmbx10!
-! Undefined control sequence.
-<argument> \â€˜and\â
-                    €™
-l.28 ...onjunction words like \textbf{\â€˜and\â€™}
-                                                  ,\textbf{\â€™or\â€™} are m...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
+Missing character: There is no â in font cmbx10!
 Missing character: There is no € in font cmbx10!
 Missing character: There is no ™ in font cmbx10!
 Missing character: There is no , in font nullfont!
-! Undefined control sequence.
-<recently read> \â
-                  
-l.28 ...e \textbf{\â€˜and\â€™},\textbf{\â€™or\â€™}
-                                                   are more likely to be und...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-Missing character: There is no € in font cmbx10!
-Missing character: There is no ™ in font cmbx10!
-! Undefined control sequence.
-<argument> \â€™or\â
-                   €™
-l.28 ...e \textbf{\â€˜and\â€™},\textbf{\â€™or\â€™}
-                                                   are more likely to be und...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
+Missing character: There is no â in font cmbx10!
 Missing character: There is no € in font cmbx10!
 Missing character: There is no ™ in font cmbx10!
 Missing character: There is no a in font nullfont!
@@ -2772,7 +2731,7 @@ Missing character: There is no . in font nullfont!
 ! Undefined control sequence.
 <write> ...erence `fig:position' on page \thepage 
                                                   \space undefined\on@line .
-l.28 ...mited to noun and verb. \ref{fig:position}
+l.29 ...mited to noun and verb. \ref{fig:position}
                                                    illusstrates the relation...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2781,7 +2740,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Reference `fig:position' on page  undefined on input line 28.
+LaTeX Warning: Reference `fig:position' on page  undefined on input line 29.
 
 Missing character: There is no i in font nullfont!
 Missing character: There is no l in font nullfont!
@@ -2860,7 +2819,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.29  \begin{figure}
+l.30  \begin{figure}
                     [h]
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2870,7 +2829,7 @@ Missing character: There is no [ in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no ] in font nullfont!
 ! Undefined control sequence.
-l.31  \includegraphics
+l.32  \includegraphics
                       [width=0.5\textwidth]{./figure/hiddenstate_partofspeec...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2891,7 +2850,7 @@ Missing character: There is no 5 in font nullfont!
 ! Missing number, treated as zero.
 <to be read again> 
                    ]
-l.31  \includegraphics[width=0.5\textwidth]
+l.32  \includegraphics[width=0.5\textwidth]
                                            {./figure/hiddenstate_partofspeec...
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
@@ -2900,7 +2859,7 @@ look up `weird error' in the index to The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    ]
-l.31  \includegraphics[width=0.5\textwidth]
+l.32  \includegraphics[width=0.5\textwidth]
                                            {./figure/hiddenstate_partofspeec...
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
@@ -2933,13 +2892,13 @@ Missing character: There is no e in font nullfont!
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.31 ...width=0.5\textwidth]{./figure/hiddenstate_
+l.32 ...width=0.5\textwidth]{./figure/hiddenstate_
                                                   partofspeechtag.png}
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Extra }, or forgotten $.
-l.31 ...{./figure/hiddenstate_partofspeechtag.png}
+l.32 ...{./figure/hiddenstate_partofspeechtag.png}
                                                   
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2954,7 +2913,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.32  \caption
+l.33  \caption
               {Statistics of corresponding part of speech tag for each state...
 
 You're in trouble here.  Try typing  <return>  to proceed.
@@ -2967,7 +2926,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.33  \end{figure}
+l.34  \end{figure}
                   
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2976,7 +2935,7 @@ or  <return>  to continue without it.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.33  \end{figure}
+l.34  \end{figure}
                   
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2987,7 +2946,7 @@ my insertion and my current dilemma will both disappear.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.33  \end{figure}
+l.34  \end{figure}
                   
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2996,7 +2955,7 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 ! Undefined control sequence.
-l.34 \paragraph
+l.35 \paragraph
                {}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3005,7 +2964,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.36 \section
+l.37 \section
              *{}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3263,32 +3222,32 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 18--38
+Overfull \hbox (20.0pt too wide) in paragraph at lines 18--39
 []
  []
 
 
-Overfull \hbox (1091.20906pt too wide) in paragraph at lines 18--38
-[]\OML/cmm/m/it/10 osition[]n[]he[]entence:png[]$
+Overfull \hbox (1091.20906pt too wide) in paragraph at lines 18--39
+[]\OML/cmm/m/it/10 osition[]n[]he[]entence:png[]$ 
  []
 
 
-Overfull \hbox (28.854pt too wide) in paragraph at lines 18--38
-\OT1/cmr/bx/n/10 andor
+Overfull \hbox (32.04843pt too wide) in paragraph at lines 18--39
+\OT1/cmr/bx/n/10 andor'
  []
 
 
-Overfull \hbox (10.86105pt too wide) in paragraph at lines 18--38
+Overfull \hbox (10.86105pt too wide) in paragraph at lines 18--39
 []
  []
 
 
-Overfull \hbox (603.08067pt too wide) in paragraph at lines 18--38
+Overfull \hbox (603.08067pt too wide) in paragraph at lines 18--39
 []\OML/cmm/m/it/10 artofspeechtag:png[]$
  []
 
 ! Undefined control sequence.
-l.40 \paragraph
+l.41 \paragraph
                {}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3303,7 +3262,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.41 T
+l.42 T
       o make a conclusion, the five states has clear meaning representing th...
 
 You're in trouble here.  Try typing  <return>  to proceed.
@@ -3830,7 +3789,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.43  \begin{wrapfigure}
+l.44  \begin{wrapfigure}
                         [16]{r}{0.5\textwidth}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -3847,7 +3806,7 @@ Missing character: There is no 5 in font nullfont!
 ! Missing number, treated as zero.
 <to be read again> 
                    }
-l.43  \begin{wrapfigure}[16]{r}{0.5\textwidth}
+l.44  \begin{wrapfigure}[16]{r}{0.5\textwidth}
                                               
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
@@ -3856,7 +3815,7 @@ look up `weird error' in the index to The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    }
-l.43  \begin{wrapfigure}[16]{r}{0.5\textwidth}
+l.44  \begin{wrapfigure}[16]{r}{0.5\textwidth}
                                               
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
@@ -3866,7 +3825,7 @@ delete the erroneous units; e.g., type `2' to delete
 two letters. (See Chapter 27 of The TeXbook.)
 
 ! Undefined control sequence.
-l.45  \includegraphics
+l.46  \includegraphics
                       [width=0.5\textwidth]{./figure/numberofsyllablesinstat...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3887,7 +3846,7 @@ Missing character: There is no 5 in font nullfont!
 ! Missing number, treated as zero.
 <to be read again> 
                    ]
-l.45  \includegraphics[width=0.5\textwidth]
+l.46  \includegraphics[width=0.5\textwidth]
                                            {./figure/numberofsyllablesinstat...
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
@@ -3896,7 +3855,7 @@ look up `weird error' in the index to The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    ]
-l.45  \includegraphics[width=0.5\textwidth]
+l.46  \includegraphics[width=0.5\textwidth]
                                            {./figure/numberofsyllablesinstat...
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
@@ -3951,7 +3910,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.46  \caption
+l.47  \caption
               {Number of syllables in the most probable 200 emitting words f...
 
 You're in trouble here.  Try typing  <return>  to proceed.
@@ -4033,7 +3992,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.47 \end{wrapfigure}
+l.48 \end{wrapfigure}
                      
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
