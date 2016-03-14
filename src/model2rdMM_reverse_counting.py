@@ -287,17 +287,77 @@ def poem_generate(num_pairs):
         robotpoem[11] = poems_dict['F'][poemid][1]
         robotpoem[12] = poems_dict['G'][poemid][0]
         robotpoem[13] = poems_dict['G'][poemid][1]
+
+        robotpoem = Format(robotpoem)
+
         # write into file
         print>>fwrite, str(poemid)
         for lineid in range(14):
             print>>fwrite, robotpoem[lineid]
     fwrite.close()
 
+def Format(poem):
+    refined = poem
+    for it, line in enumerate(refined):
+        tmp_str = str(line[1:-1]) # tmp_str contains the final result
+        tmp_lst = list(tmp_str)
 
-def main():
-    num_pairs = 10
-    poem_generate(num_pairs)
+        tmp_lst[0] = tmp_lst[0].upper() # The first letter in a line is upper case
+        
+        ### deleting redundant spacing
+        idxes = Index(tmp_str, ' ')
+        for count, idx in enumerate(idxes):
+            if 0 == (count%2):
+                del tmp_lst[idx - count/2]
+        tmp_str = ''
+        for ch in tmp_lst:
+            tmp_str += ch
+        tmp_lst = list(tmp_str)
+        ### deleting redundant spacing
+        scheme = PuncScheme(it)
+        if 1 == len(scheme):
+            tmp_lst.append(scheme)
+        else:
+            idxes = Index(tmp_str, ' ')
+            num, mark1, mark2 = scheme.split() ; num = int(num)
+            tmp_lst[idxes[num]] = mark1 + tmp_lst[idxes[num]]
+            tmp_lst.append(mark2)
 
+        tmp_str = ''
+        for ch in tmp_lst:
+            tmp_str += ch
+        refined[it] = tmp_str
+    
+    ###Adding spaces before the last two lines
+    refined[12] = '  ' + refined[12]
+    refined[13] = '  ' + refined[13]
+    ###Adding spaces before the last two lines
+    return refined
+
+def PuncScheme(line_id):
+    scheme = {
+        0:  '3 , ,',
+        1:  ',',
+        2:  ',',
+        3: ':',
+        
+        4: ',',
+        5: ';',
+        6: ',',
+        7: '.',
+        
+        8: ',',
+        9: '3 , ,',
+        10: ',',
+        11: '?',
+
+        12: ',',
+        13: '.',
+    }
+    return scheme.get(line_id, "nothing")
+
+def Index(s, ch):
+    return [i for i, ltr in enumerate(s) if ltr == ch]
 
 def random_distr(l):
     r = random.uniform(0, 1)
@@ -311,8 +371,14 @@ def random_distr(l):
     return item
 
 
+
 def hasNumbers(inputString):
     return bool(re.search(r'\d', inputString))
+
+
+def main():
+    num_pairs = 1
+    poem_generate(num_pairs)
 
 
 if __name__ == "__main__":
