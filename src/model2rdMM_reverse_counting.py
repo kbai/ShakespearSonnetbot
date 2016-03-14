@@ -236,7 +236,7 @@ def poem_generate(num_pairs):
         words_num_syllables = np.zeros(len(words), dtype=int)
         for wordid, word in enumerate(words):
             try:
-                phon = prondict[word]
+                phon = prondict[word][0]
                 words_num_syllables[wordid] = sum(map(hasNumbers, phon))
             except:
                 words_num_syllables[wordid] = len(h_en.syllables(unicode(word)))
