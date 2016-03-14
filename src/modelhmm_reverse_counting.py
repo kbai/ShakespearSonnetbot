@@ -526,8 +526,13 @@ def main():
     poem_generate(num_of_hidden_states, num_pairs)
     '''
     #### This is codes for poem generation and training
-    num_pairs = 1
-    num_of_hidden_states = 10
+    num_pairs = 0
+    num_of_hidden_states = 100
+    ###
+    poem_generate(num_of_hidden_states, num_pairs)
+
+    num_pairs = 0
+    num_of_hidden_states = 100
     ###
     poem_generate(num_of_hidden_states, num_pairs)
     print 'finished'
