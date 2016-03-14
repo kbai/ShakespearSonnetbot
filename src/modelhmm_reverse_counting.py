@@ -527,12 +527,12 @@ def main():
     '''
     #### This is codes for poem generation and training
     num_pairs = 0
-    num_of_hidden_states = 100
+    num_of_hidden_states = 500
     ###
     poem_generate(num_of_hidden_states, num_pairs)
 
     num_pairs = 0
-    num_of_hidden_states = 100
+    num_of_hidden_states = 1000
     ###
     poem_generate(num_of_hidden_states, num_pairs)
     print 'finished'
