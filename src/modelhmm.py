@@ -98,12 +98,6 @@ class modelhmm():
 
 
 
-
-
-
-
-
-
     def viterbi(self, data):
 
         logobs = np.log(self.obs_)

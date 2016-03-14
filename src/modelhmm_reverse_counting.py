@@ -327,8 +327,11 @@ def poem_generate(num_of_hidden_states, num_pairs):
 
     h_en = Hyphenator('en_US')
     prondict = nltk.corpus.cmudict.dict()
-
+    prob_file_name = '../probability/prob_num'+str(num_of_hidden_states)+'.txt'
+    fwrite = open(prob_file_name, 'w')
+    ###
     for ind in ['A','B','C','D','E','F','G']:
+    ### for ind in ['A']:
         print "Group:", ind
         # get ending words
         ending_words = ending_words_dict[ind]
@@ -363,10 +366,10 @@ def poem_generate(num_of_hidden_states, num_pairs):
 
         # train model
         ntrial = 10
-        logp = np.zeros(ntrial)
+        logp = np.zeros(ntrial) # logp is an 1-D array
         subpoems = [None]*num_pairs
         for i in range(ntrial):
-            modelname = 'modelnhiddengroup' + ind + '_' + str(num_of_hidden_states)+'_trial'+str(i)
+            modelname = 'modelnhiddengroup'+ind+'_'+str(num_of_hidden_states)+'_trial'+str(i)
             hmm = modelhmm(num_of_hidden_states, len(words), Y, words_num_syllables, modelname)
             logp[i] = hmm.trainHHM(Y)
             if (i==0) or (i>0 and logp[i] > max(logp[0:i])):
@@ -392,7 +395,10 @@ def poem_generate(num_of_hidden_states, num_pairs):
 
         # add the best subpoem to poems_dict
         poems_dict[ind] = subpoems
+        print>>fwrite, ind 
+        print>>fwrite, str(logp)
         print "List of log probability:", logp
+    fwrite.close()
 
     # write down the poems
     poem_file_name = '../poems_counting/reverse_'+str(num_of_hidden_states)+'.txt'
@@ -520,8 +526,8 @@ def main():
     poem_generate(num_of_hidden_states, num_pairs)
     '''
     #### This is codes for poem generation and training
-    num_pairs = 15
-    num_of_hidden_states = 40
+    num_pairs = 1
+    num_of_hidden_states = 10
     ###
     poem_generate(num_of_hidden_states, num_pairs)
     print 'finished'
@@ -529,8 +535,6 @@ def main():
     #num_pairs = 15
     #num_of_hidden_states = 200
     ###
-    poem_generate(num_of_hidden_states, num_pairs)
-    print 'finished'
 
     ###num_pairs = 10
     ###num_of_hidden_states = 10
