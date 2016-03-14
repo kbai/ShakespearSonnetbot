@@ -354,7 +354,7 @@ def poem_generate(num_of_hidden_states, num_pairs):
         words_num_syllables = np.zeros(len(words), dtype=int)
         for wordid, word in enumerate(words):
             try:
-                phon = prondict[word]
+                phon = prondict[word][0]
                 words_num_syllables[wordid] = sum(map(hasNumbers, phon))
             except:
                 words_num_syllables[wordid] = len(h_en.syllables(unicode(word)))
@@ -414,39 +414,78 @@ def poem_generate(num_of_hidden_states, num_pairs):
         robotpoem[11] = poems_dict['F'][poemid][1]
         robotpoem[12] = poems_dict['G'][poemid][0]
         robotpoem[13] = poems_dict['G'][poemid][1]
+
+        robotpoem = Format(robotpoem)
+        
         # write into file
         print>>fwrite, str(poemid)
         for lineid in range(14):
             print>>fwrite, robotpoem[lineid]
     fwrite.close()
 
+def Format(poem):
 
+    refined = poem
+    for it, line in enumerate(refined):
+        tmp_str = str(line[1:-1]) # tmp_str contains the final result
+        tmp_lst = list(tmp_str)
 
-def main():
+        tmp_lst[0] = tmp_lst[0].upper() # The first letter in a line is upper case
+        
+        ### deleting redundant spacing
+        idxes = Index(tmp_str, ' ')
+        for count, idx in enumerate(idxes):
+            if 0 == (count%2):
+                del tmp_lst[idx - count/2]
+        tmp_str = ''
+        for ch in tmp_lst:
+            tmp_str += ch
+        tmp_lst = list(tmp_str)
+        ### deleting redundant spacing
+        scheme = PuncScheme(it)
+        if 1 == len(scheme):
+            tmp_lst.append(scheme)
+        else:
+            idxes = Index(tmp_str, ' ')
+            num, mark1, mark2 = scheme.split() ; num = int(num)
+            tmp_lst[idxes[num]] = mark1 + tmp_lst[idxes[num]]
+            tmp_lst.append(mark2)
 
-    #####
-    ###Number of hidden state :  5 finished
-    ###Number of hidden state : 10 finished
-    ###Number of hidden state : 20 finished
-    ###Number of hidden state : 40 finished
-    ###Numver of hidden state : 80 finished
-    ''' This is codes for poem generation and 
-    ####
-    NeedGeneration = True
-    num_pairs = 10
-    num_of_hidden_states = 20
-    ###
-    poem_generate(num_of_hidden_states, num_pairs)
-    '''
-    print 'finished'
-
-    ###num_pairs = 10
-    ###num_of_hidden_states = 10
-    ###poem_generate(num_of_hidden_states, num_pairs)
+        tmp_str = ''
+        for ch in tmp_lst:
+            tmp_str += ch
+        refined[it] = tmp_str
     
-    ###num_pairs = 10
-    ###num_of_hidden_states = 20
-    ###poem_generate(num_of_hidden_states, num_pairs)
+    ###Adding spaces before the last two lines
+    refined[12] = '  ' + refined[12]
+    refined[13] = '  ' + refined[13]
+    ###Adding spaces before the last two lines
+    return refined
+
+def PuncScheme(line_id):
+    scheme = {
+        0:  '3 , ,',
+        1:  ',',
+        2:  ',',
+        3: ':',
+        
+        4: ',',
+        5: ';',
+        6: ',',
+        7: '.',
+        
+        8: ',',
+        9: '3 , ,',
+        10: ',',
+        11: '?',
+
+        12: ',',
+        13: '.',
+    }
+    return scheme.get(line_id, "nothing")
+
+def Index(s, ch):
+    return [i for i, ltr in enumerate(s) if ltr == ch]
 
 def random_distr(l):
     r = random.uniform(0, 1)
@@ -463,6 +502,38 @@ def random_distr(l):
 def hasNumbers(inputString):
     return bool(re.search(r'\d', inputString))
 
+def main():
+
+    #####
+    ###Number of hidden state :  5 finished
+    ###Number of hidden state : 10 finished
+    ###Number of hidden state : 20 finished
+    ###Number of hidden state : 40 finished
+    ###Numver of hidden state : 80 finished
+    
+    ''' 
+    #### This is codes for poem generation and training
+    NeedGeneration = True
+    num_pairs = 10
+    num_of_hidden_states = 20
+    ###
+    poem_generate(num_of_hidden_states, num_pairs)
+    '''
+    #### This is codes for poem generation and training
+    NeedGeneration = True
+    num_pairs = 1
+    num_of_hidden_states = 5
+    ###
+    poem_generate(num_of_hidden_states, num_pairs)
+    print 'finished'
+
+    ###num_pairs = 10
+    ###num_of_hidden_states = 10
+    ###poem_generate(num_of_hidden_states, num_pairs)
+    
+    ###num_pairs = 10
+    ###num_of_hidden_states = 20
+    ###poem_generate(num_of_hidden_states, num_pairs)
 
 if __name__ == "__main__":
     main()
