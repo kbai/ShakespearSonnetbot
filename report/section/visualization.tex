@@ -2,7 +2,29 @@
 \vspace{5pt}
 \subsubsection{Number of hidden states}
 \vspace{5pt}
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=1\textwidth]{./figure/HiddenMarkov5.png}
+ \caption{trnasition graphic model with 5 hidden state: In this figure, we ignore transition probability lower than $10 ^{-4}$ and we can see that some of the transition between states are ignorable, which is a indication that hidden states do have their own iterpretations}
+ \end{figure}
 \paragraph{} First, as we increase the number of hidden states, the quality of the generated sentences is increasing. We interpret this phenomenon as such: when the number of hidden states is small, some very different word have to be put into the same state. When generating sequences, not all word pairs under consecutive hidden states are meaningful(actually only a small number of pairs are). If we increase the number of hidden states to be almost equal to the number of words in the corpus, then usual word pairs are easily captured. Another benefit of increasing number of hidden states is that the sentence length is tending to have less variation. We randomly generate 1000 sentences when the number of hidden states equals 5, 100 and 1000 and plot the generated sentence length distribution. We find that as the number hidden states increases, the sentence length is more centered around 8-9, which is the typical length of a line in a sonnet.
+%\begin{figure}[ht]
+%\centering
+%\begin{minipage}[b]{0.45\linewidth}
+%	\centering
+%  \includegraphics[width=0.6\linewidth]{./figure/HiddenMarkov5.png}
+%  \caption{Happy Smiley}
+%  \label{fig:minipage1}
+%\end{minipage}
+%\quad
+%\begin{minipage}[b]{0.45\linewidth}
+%	\centering
+%  \includegraphics[width=0.6\linewidth]{./figure/hiddenstate_len_distri.png}
+%  \caption{Sad Smiley}
+%  \label{fig:minipage2}
+%\end{minipage}
+%\end{figure}
+
  \begin{figure}[h!]
  \centering
  \includegraphics[width=0.5\textwidth]{./figure/hiddenstate_len_distri.png}

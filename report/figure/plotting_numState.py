@@ -13,7 +13,7 @@ def plotting(num_list, data, Pick = 0):
 	return
 
 def main():
-	num_list = [5, 10, 20, 40, 100]
+	num_list = [5, 10, 20, 40, 80, 100]
 	data = []
 	###for num in [5, 10, 20, 40]:
 	for num in num_list:
