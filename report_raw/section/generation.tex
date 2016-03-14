@@ -1,6 +1,27 @@
 %
-\paragraph{}
+\paragraph{}\label{sec:syllablecount}
 We present results from the models we worked on in this project. As stated above, we do counting in the poetry generation to make sure that each line in our poem consists of 10 syallables.That is to say, we actually generation our poetry line by line, at each position of line, we repeated generate lines until we get a 10-syllable line: we only took our pick of lines with 10 syllables. In counting the syllables, we use dictionary from \textit{NLTK} and package \textit{PyHyphen} to break words into syllables, we did not truncate lines during the counting, so each line is supposed to end up in the \textit{END} state (this is the same for both Hidden Markov Model and Hidden Markov Model). We only took our pick at sentence level.
 \subsubsection{1st Hidden Markov Model}
 
 \subsubsection{2nd order Markov Chain Model}
+\paragraph{}
+Here is a poem we generated from our reversed-trained 2nd order Markov Model, with automatically marked punctuation, we name it \textbf{'Hope or Fear?'}:
+\renewcommand{\poemtoc}{subsection}
+\poemtitle{Hope or Fear?}
+\settowidth{\versewidth}{There was an old party of Lyme}
+\begin{verse}[\versewidth]
+Applying fears to hopes, and hopes to fears, \\
+The worser spirit woman coloured ill,\\
+What potions have drunk of siren tears,\\
+Thus far for love my love suit sweet fulfil:\\
+The mortal moon hath her eclipse endured,\\
+Deaths second self that seals up all in rest;\\
+Incertainties now crown themselves assured,\\
+On both sides thus is simple truth suppressed.\\
+And by this will be gainer too,\\
+And all things turns, to fair that eyes can see,\\
+How can it how can loves eye be true,\\
+Thy proud hearts slave and vassal wretch to be?\\
+\vin Thine by thy beauty tempting her to thee,\\
+\vin  So long lives this and this shall ever be.\\
+\end{verse}
