@@ -5,10 +5,22 @@ import re
 def plotting(num_list, data, Pick = 0):
 	assert len(num_list) == len(data), 'len(num_list) == len(data) should hold'
 	assert Pick>= 0 and Pick<7, 'Pick>= 0 and Pick<7 should hold'
-	plt.plot(num_list, data[:, 2])
+	Pick = 0
+	plt.plot(num_list, data[:, Pick], label = 'Group' + chr(Pick + ord('A')))
+
+	Pick = 2
+	plt.plot(num_list, data[:, Pick], label = 'Group' + chr(Pick + ord('A')))
+
+	Pick = 4
+	plt.plot(num_list, data[:, Pick], label = 'Group' + chr(Pick + ord('A')))
+
 	plt.ylabel('$log{P}$', fontsize = 20)
 	plt.xlabel('Number of States', fontsize = 15)
+	plt.legend(loc = 'best')
+	
+
 	plt.savefig('./probability.png')
+
 	plt.show()
 	return
 
