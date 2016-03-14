@@ -2,7 +2,7 @@
 \vspace{5pt}
 \subsubsection{Number of hidden states}
 \vspace{5pt}
-\paragraph First, as we increase the number of hidden states, the quality of the generated sentences is increasing. We interpret this phenomenon as such: when the number of hidden states is small, some very different word have to be put into the same state. When generating sequences, not all word pairs under consecutive hidden states are meaningful(actually only a small number of pairs are). If we increase the number of hidden states to be almost equal to the number of words in the corpus, then usual word pairs are easily captured . Another benefit of increasing number of hidden states is that the sentence length is tending to have less variation. We randomly generate 1000 sentences when the number of hidden states equals 5, 100 and 1000 and plot the generated sentence length distribution. We find that as the number hidden states increases, the sentence length is more centered around 8-9, which is the typical length of a line in sonnet.
+\paragraph First, as we increase the number of hidden states, the quality of the generated sentences is increasing. We interpret this phenomenon as such: when the number of hidden states is small, some very different word have to be put into the same state. When generating sequences, not all word pairs under consecutive hidden states are meaningful(actually only a small number of pairs are). If we increase the number of hidden states to be almost equal to the number of words in the corpus, then usual word pairs are easily captured. Another benefit of increasing number of hidden states is that the sentence length is tending to have less variation. We randomly generate 1000 sentences when the number of hidden states equals 5, 100 and 1000 and plot the generated sentence length distribution. We find that as the number hidden states increases, the sentence length is more centered around 8-9, which is the typical length of a line in a sonnet.
  \begin{figure}[h!]
  \centering
  \includegraphics[width=0.5\textwidth]{../figure/hiddenstate_len_distri.png}
@@ -11,12 +11,12 @@
 \subsection{5pt}
 \subsection{Interpreting the hidden states}
 \vspace{5pt}
-\paragraph Here we also present our findings about the interpretation of the hidden states.
+\paragraph Here we also present our findings about the interpretations of the hidden states.
 The hidden states should bear some meanings in a sense that words likely to be emitted from the same hidden states should more or less share some common features. We find that the words pertaining to different hidden state may have difference in their part of speech tag, syllables and positions in a sentence.
 
 For simplicity, in the following discussion we are always using 5 hidden states example.  We plot the transition diagram of the 5 hidden states. From that we can see there is a close connection between hidden states and the position in a sentence.
 For each sentence in the training corpus, we use Viterbi algorithm to find the most likely corresponding hidden state sequences.We count how many times a certain state appears in a certain position of a sentence.  We plot out the distribution of the occurring position of the 5 hidden states in those maximum likelihood sequences. 
-It is clear that each of the 5 hidden states have peaks in different positions of a sentence. State 2 is most likely to be the starting word of a sentence while state 4 end of a sentence.
+It is clear that each of the 5 hidden states have peaks in different positions of a sentence. State 2 is most likely to be the starting word of a sentence while state 4 end of a sentence. But we can expect that if the number of hidden state is greater, they may be representing some other meanings and may bear some sentimental meanings. 
  \begin{figure}[h!]
  \centering
  \includegraphics[width=0.5\textwidth]{../figure/hiddenstates_position_in_the_sentence.png}
