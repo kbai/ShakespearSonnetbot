@@ -7,6 +7,7 @@ import nltk
 import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 from collections import Counter
+from sklearn import preprocessing
 
 class modelhmm():
     def __init__(self, m, n, corpus_in,name):
@@ -120,7 +121,11 @@ class modelhmm():
             df = pd.DataFrame.from_dict(pos_counts, orient='index')
             all_df.append(df)
         results = pd.concat(all_df,axis=1)
+        print results
+        results.fillna(0,inplace=True)
         results.columns=['state0','state1','state2','state3','state4']
+       # print(results['NOUN'])
+
         results.plot(kind='bar')
         #print(results)
            # plt.xlabel('part-of-speech tag')
@@ -370,7 +375,7 @@ def main():
     print(Y)
     hmm = modelhmm(num_of_hidden_states, len(words), Y, 'modelnhidden5groupA')
     if(False):
-        for i in range(500):
+        for i in range(5000):
             print(i)
             print(hmm.update_state_corpus(Y))
         hmm.savemodel()
