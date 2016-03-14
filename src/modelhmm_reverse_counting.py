@@ -419,7 +419,7 @@ def poem_generate(num_of_hidden_states, num_pairs):
         
         # write into file
         print>>fwrite, str(poemid)
-        for lineid in range(14):
+        for lineid in range(len(robotpoem)):
             print>>fwrite, robotpoem[lineid]
     fwrite.close()
 
@@ -460,6 +460,7 @@ def Format(poem):
     refined[12] = '  ' + refined[12]
     refined[13] = '  ' + refined[13]
     ###Adding spaces before the last two lines
+    refined = refined[0:4] + [''] + refined[4:8] + [''] + refined[8:12] + [''] + refined[12:14]
     return refined
 
 def PuncScheme(line_id):
@@ -510,7 +511,6 @@ def main():
     ###Number of hidden state : 20 finished
     ###Number of hidden state : 40 finished
     ###Numver of hidden state : 80 finished
-    
     ''' 
     #### This is codes for poem generation and training
     NeedGeneration = True
@@ -520,9 +520,14 @@ def main():
     poem_generate(num_of_hidden_states, num_pairs)
     '''
     #### This is codes for poem generation and training
-    NeedGeneration = True
-    num_pairs = 1
-    num_of_hidden_states = 5
+    num_pairs = 15
+    num_of_hidden_states = 40
+    ###
+    poem_generate(num_of_hidden_states, num_pairs)
+    print 'finished'
+    #
+    #num_pairs = 15
+    #num_of_hidden_states = 200
     ###
     poem_generate(num_of_hidden_states, num_pairs)
     print 'finished'

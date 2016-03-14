@@ -292,7 +292,7 @@ def poem_generate(num_pairs):
 
         # write into file
         print>>fwrite, str(poemid)
-        for lineid in range(14):
+        for lineid in range(len(robotpoem)):
             print>>fwrite, robotpoem[lineid]
     fwrite.close()
 
@@ -327,11 +327,11 @@ def Format(poem):
         for ch in tmp_lst:
             tmp_str += ch
         refined[it] = tmp_str
-    
     ###Adding spaces before the last two lines
     refined[12] = '  ' + refined[12]
     refined[13] = '  ' + refined[13]
     ###Adding spaces before the last two lines
+    refined = refined[0:4] + [''] + refined[4:8] + [''] + refined[8:12] + [''] + refined[12:14]
     return refined
 
 def PuncScheme(line_id):
@@ -377,7 +377,7 @@ def hasNumbers(inputString):
 
 
 def main():
-    num_pairs = 1
+    num_pairs = 10
     poem_generate(num_pairs)
 
 
