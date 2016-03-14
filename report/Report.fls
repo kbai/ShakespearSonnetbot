@@ -1,4 +1,4 @@
-PWD /Users/yerong/Desktop/tmp/ShakespearSonnetbot/report
+PWD /Users/yerong/Desktop/tmp/report
 INPUT /usr/local/texlive/2015/texmf.cnf
 INPUT /usr/local/texlive/2015/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2015/texmf-var/web2c/pdftex/pdflatex.fmt
@@ -347,12 +347,12 @@ INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/mathpazo/fplmr.tfm
 INPUT ./figure/hiddenstates_position_in_the_sentence.png
 INPUT ./figure/hiddenstates_position_in_the_sentence.png
 INPUT ./figure/hiddenstates_position_in_the_sentence.png
-INPUT ./figure/hiddenstate_partofspeechtag.png
-INPUT ./figure/hiddenstate_partofspeechtag.png
-INPUT ./figure/hiddenstate_partofspeechtag.png
 INPUT ./figure/numberofsyllablesinstates.png
 INPUT ./figure/numberofsyllablesinstates.png
 INPUT ./figure/numberofsyllablesinstates.png
+INPUT ./figure/hiddenstate_partofspeechtag.png
+INPUT ./figure/hiddenstate_partofspeechtag.png
+INPUT ./figure/hiddenstate_partofspeechtag.png
 INPUT ./section/generation.tex
 INPUT ./section/generation.tex
 INPUT ./section/additional.tex
@@ -361,10 +361,10 @@ INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/courier/pcrr8c.tfm
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/courier/pcrro7t.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/vf/adobe/courier/pcrr7t.vf
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/vf/adobe/courier/pcrr8c.vf
-INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/courier/pcrro7t.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/vf/adobe/courier/pcrro7t.vf
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/courier/pcrro8r.tfm
 INPUT ./section/conclusion.tex
