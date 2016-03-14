@@ -8,6 +8,7 @@ import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 from collections import Counter
 from sklearn import preprocessing
+from countvowel import count_syllables
 
 class modelhmm():
     def __init__(self, m, n, corpus_in,name):
@@ -86,7 +87,7 @@ class modelhmm():
       #  occurarray = []
       #  posarray = []
 
-      #  for istate in range(self.m_):
+      #for istate in range(self.m_):
       #      self.most_frequent_word[istate,:] = np.argsort(obs_normalize[istate,:])
       #      freq = [word[i] for i in self.most_frequent_word[istate,-200:]]
       #      occur = [np.argmax(position_occrrance[i,:]) for i in self.most_frequent_word[istate,-200:]]
@@ -134,6 +135,25 @@ class modelhmm():
         plt.savefig('../figure/hiddenstate_partofspeechtag.png')
 
         plt.show()
+
+    def syllable_analysis(self):
+        sarray = np.loadtxt('./rankingsofwords.txt',dtype='str').transpose()
+        count = np.zeros((self.m_,200))
+        for i in range(self.m_):
+            for j in range(200):
+                count[i,j] = count_syllables(sarray[i,j])
+            plt.hist(count[i,:],histtype='step',range=[0,6],bins=6,label='state{0}'.format(i))
+        plt.legend()
+        plt.xlabel('number of syllables')
+        plt.ylabel('counts')
+
+        plt.savefig('../figure/numberofsyllablesinstates.png')
+        plt.show()
+
+
+
+
+
 
 
 
@@ -362,6 +382,7 @@ class modelhmm():
 
 def main():
 
+
     corpus = importasline('../data/grouping1/groupA.txt',ignorehyphen = True)
 
     vectorizer = CountVectorizer(min_df=1)
@@ -374,6 +395,9 @@ def main():
     print(len(words))
     print(Y)
     hmm = modelhmm(num_of_hidden_states, len(words), Y, 'modelnhidden5groupA')
+
+    hmm.syllable_analysis()
+    exit()
     if(False):
         for i in range(5000):
             print(i)
