@@ -31,7 +31,7 @@ In this case, we train the HMM or 2rd-order Markov model in the reverse directio
  pity  mayst  be  you  made  to  praise  best  \\
  the  thee  be  him  and  length  time  thou  am  still  breast  
 \end{verse}
-We can see that the lines alway rhyme, but the number of syllables varies a lot.
+We can see that the lines alway rhyme, but the total number of syllables in each line varies a lot.
 
 \subsection{Controlling the total number of syllables in a line}\label{sec:syllablecount}
 There are several ways to control the total number of syllables in each line and ideally to make it exactly 10. We take a very simple approach to do this: repeatedly generating lines until the total number of syllables is 10. Sometimes, it takes a long time to get a line with exactly 10 syllables. Therefore, we randomly generate at most 50 lines, and keep the line whose total number of syllables is closest to 10.
