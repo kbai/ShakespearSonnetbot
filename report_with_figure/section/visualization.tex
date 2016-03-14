@@ -8,7 +8,7 @@
  \includegraphics[width=0.5\textwidth]{../figure/hiddenstate_len_distri.png}
  \caption{Sentence length distribution with different number of hidden states. When number of hidden states=1000, the length of the sentences are centered arount 8-9.}
  \end{figure}
-\subsection{5pt}
+\vspace{5pt}
 \subsection{Interpreting the hidden states}
 \vspace{5pt}
 \paragraph Here we also present our findings about the interpretations of the hidden states.
@@ -16,7 +16,7 @@ The hidden states should bear some meanings in a sense that words likely to be e
 
 For simplicity, in the following discussion we are always using 5 hidden states example.  We plot the transition diagram of the 5 hidden states. From that we can see there is a close connection between hidden states and the position in a sentence.
 For each sentence in the training corpus, we use Viterbi algorithm to find the most likely corresponding hidden state sequences.We count how many times a certain state appears in a certain position of a sentence.  We plot out the distribution of the occurring position of the 5 hidden states in those maximum likelihood sequences. 
-It is clear that each of the 5 hidden states have peaks in different positions of a sentence. State 2 is most likely to be the starting word of a sentence while state 4 end of a sentence. But we can expect that if the number of hidden state is greater, they may be representing some other meanings and may bear some sentimental meanings. 
+It is clear that each of the 5 hidden states have peaks in different positions of a sentence. State 2 is most likely to be the starting word of a sentence while state 4 end of a sentence.
  \begin{figure}[h!]
  \centering
  \includegraphics[width=0.5\textwidth]{../figure/hiddenstates_position_in_the_sentence.png}
@@ -38,5 +38,5 @@ The number of syllables in each state is not so different. We choose the most pr
  \end{figure}
 
 
-To make a conclusion, the five states has clear meaning representing the position in a sentence. It also has some relationship to the part of speech tags. But the two effects are not independent. It might be that a certain state have to be the first state in a sentence so that it prefers some part of speech tags rather than others. 
+To make a conclusion, the five states has clear meaning representing the position in a sentence. It also has some relationship to the part of speech tags. But the two effects are not independent. It might be that a certain state have to be the first state in a sentence so that it prefers some part of speech tags rather than others. In this study, the hidden state doesn't seem to bear sentimental meanings because the corpus is so small and most words appear only once. So there is no way to tell their sentimental polarity. If we have a larger corpus, by using more hidden states, we could dig out more sentimental meanings. 
 
