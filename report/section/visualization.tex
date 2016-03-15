@@ -40,22 +40,25 @@ The hidden states should bear some meanings in a sense that words likely to be e
 For simplicity, in the following discussion we are always using 5 hidden states example.  We plot the transition diagram of the 5 hidden states. From that we can see there is a close connection between hidden states and the position in a sentence.
 For each sentence in the training corpus, we use Viterbi algorithm to find the most likely corresponding hidden state sequences.We count how many times a certain state appears in a certain position of a sentence.  We plot out the distribution of the occurring position of the 5 hidden states in those maximum likelihood sequences. 
 It is clear that each of the 5 hidden states have peaks in different positions of a sentence. State 2 is most likely to be the starting word of a sentence while state 4 end of a sentence.
- \begin{wrapfigure}[16]{l}{0.52\textwidth}
+ \begin{wrapfigure}[20]{l}{0.5\textwidth}
  %\begin{center}
- \includegraphics[width=0.52\textwidth]{./figure/hiddenstates_position_in_the_sentence.png}
+ \includegraphics[width=0.5\textwidth]{./figure/hiddenstates_position_in_the_sentence.png}
  \caption{The distribution of different hidden states showing up at different positions in a sentence. Here we assume that a sentence is made of 8 words. If the actual length is greater than 8, then the later positions are also categorized as position 7.\label{fig:position}}
  %\end{center}
 \end{wrapfigure}
-%\vspace{15pt}
+\section*{}
+\vspace{10pt}
+\paragraph{}
+Words pertaining to the 5 hidden states also have different distribution in their corresponding part of speech tags.  For each sentence in the corpus, we use the part of speech tags marking tools provided by NLTK package to see the part of speech tag each hidden state is corresponding to and then make a histogram of how many times a hidden states appears in a sentence as a noun, verb, adj, adv,. We find that state 1 is most likely to appear as a noun while state 2 is more likely to appear as verb. Conjunction words like \textbf{'and'},\textbf{'or'} are more likely to be under state 2 and 3 while state 4, usually at the end of a sentence, is limited to noun and verb. \ref{fig:position} illusstrates the relationship between hidden states and positions in a sentence.
 \\
-Words pertaining to the 5 hidden states also have different distribution in their corresponding part of speech tags.  For each sentence in the corpus, we use the part of speech tags marking tools provided by NLTK package to see the part of speech tag each hidden state is corresponding to and then make a histogram of how many times a hidden states appears in a sentence as a noun, verb, adj, adv,. We find that state 1 is most likely to appear as a noun while state 2 is more likely to appear as verb. Conjunction words like \textbf{‘and’},\textbf{’or'} are more likely to be under state 2 and 3 while state 4, usually at the end of a sentence, is limited to noun and verb. \ref{fig:position} illusstrates the relationship between hidden states and positions in a sentence.
+\\
  \begin{figure}[h]
  \centering
  \includegraphics[width=0.5\textwidth]{./figure/hiddenstate_partofspeechtag.png}
  \caption{Statistics of corresponding part of speech tag for each state in the maximum likelyhood sequence given by viterbi algorithm}
  \end{figure}
 \paragraph{}
-\vspace{35pt}
+%\vspace{35pt}
 \section*{}
 The number of syllables in each state is not so different. We choose the most probable 200 word that is emitted by each of the 5 states and count their number of syllables. The emitting probability has been normalized by word frequency. We didn’t find significant differences between each state. 
 

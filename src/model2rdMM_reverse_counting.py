@@ -193,7 +193,7 @@ class Markov():
                 line_pocket = line
                 linew_pocket = linew
 
-            if (error_pocket==0) or num_trial>50: break
+            if (error_pocket==0) or num_trial>5000: break
 
         # print "Number of syllabels:", sum(num_syllables)
 
@@ -377,7 +377,7 @@ def hasNumbers(inputString):
 
 
 def main():
-    num_pairs = 10
+    num_pairs = 50
     poem_generate(num_pairs)
 
 

@@ -383,7 +383,7 @@ def poem_generate(num_of_hidden_states, num_pairs):
                     line0,linew0 = hmm.generating_random_line_end(start_token[0])
                     for j in linew0[::-1]:
                         robotpoem0+=' '+words[j]+' '
-                    print(robotpoem0)
+                    print robotpoem0, 'robotpoem0'
                     robotpoem1 = ''
                     line1,linew1 = hmm.generating_random_line_end(start_token[1])
                     for j in linew1[::-1]:
@@ -526,13 +526,13 @@ def main():
     poem_generate(num_of_hidden_states, num_pairs)
     '''
     #### This is codes for poem generation and training
-    num_pairs = 0
-    num_of_hidden_states = 500
+    num_pairs = 40
+    num_of_hidden_states = 40
     ###
     poem_generate(num_of_hidden_states, num_pairs)
 
-    num_pairs = 0
-    num_of_hidden_states = 1000
+    ###num_pairs = 0
+    ###num_of_hidden_states = 1000
     ###
     poem_generate(num_of_hidden_states, num_pairs)
     print 'finished'

@@ -11,10 +11,12 @@
 \BOOKMARK [2][-]{subsection.4.1}{Interpreting the hidden states}{section.4}% 11
 \BOOKMARK [1][-]{section.5}{Poetry Generation}{}% 12
 \BOOKMARK [2][-]{section*.3}{1st Hidden Markov Model}{section.5}% 13
-\BOOKMARK [3][-]{section*.3}{2nd order Markov Chain Model}{section.5}% 14
-\BOOKMARK [2][-]{section*.4}{Hope or Fear?}{section.5}% 15
-\BOOKMARK [1][-]{section.6}{Additional researches that we have worked on}{}% 16
-\BOOKMARK [2][-]{subsection.6.1}{Rhyme}{section.6}% 17
-\BOOKMARK [2][-]{subsection.6.2}{Controlling the total number of syllables in a line}{section.6}% 18
-\BOOKMARK [2][-]{subsection.6.3}{Incorporating additional texts}{section.6}% 19
-\BOOKMARK [1][-]{section.7}{Conclusion}{}% 20
+\BOOKMARK [2][-]{section*.4}{Stochastic thought}{section.5}% 14
+\BOOKMARK [3][-]{poemline.2.15}{2nd order Markov Chain Model}{section*.4}% 15
+\BOOKMARK [2][-]{section*.5}{Hope or Fear?}{section.5}% 16
+\BOOKMARK [3][-]{poemline.3.15}{Comparison : 1st Hidden Markov Model vs 2nd order Markov Chain Model}{section*.5}% 17
+\BOOKMARK [1][-]{section.6}{Additional researches that we have worked on}{}% 18
+\BOOKMARK [2][-]{subsection.6.1}{Rhyme}{section.6}% 19
+\BOOKMARK [2][-]{subsection.6.2}{Controlling the total number of syllables in a line}{section.6}% 20
+\BOOKMARK [2][-]{subsection.6.3}{Incorporating additional texts}{section.6}% 21
+\BOOKMARK [1][-]{section.7}{Conclusion}{}% 22
