@@ -377,7 +377,7 @@ def hasNumbers(inputString):
 
 
 def main():
-    num_pairs = 50
+    num_pairs = 20
     poem_generate(num_pairs)
 
 

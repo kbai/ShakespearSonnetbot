@@ -2,7 +2,7 @@
 \paragraph{}
 We present results from the models we worked on in this project. As stated above, we do counting in the poetry generation to make sure that each line in our poem consists of 10 syallables.That is to say, we actually generation our poetry line by line, at each position of line, we repeated generate lines until we get a 10-syllable line: we only took our pick of lines with 10 syllables. In counting the syllables, we use dictionary from \textit{NLTK} and package \textit{PyHyphen} to break words into syllables, we did not truncate lines during the counting, so each line is supposed to end up in the \textit{END} state (this is the same for both Hidden Markov Model and Hidden Markov Model). We only took our pick at sentence level.
 \subsubsection{1st Hidden Markov Model}
-To make the improvements we have made clear, let look at a poem generated from HMM with 100 hidden states and trained and generated in a normal order (thus no ryhme dictionary is used), we do not count the syllables:
+To make the improvements we made clear, let's look at a poem generated from HMM with 100 hidden states and trained and generated in a normal order (thus no ryhme dictionary is used), we do not count the syllables:
 \settowidth{\versewidth}{even  see  shall  accessary  used  must  find  and  herself  enfeebled  mine  it}
 
 \begin{verse}[\versewidth]
@@ -31,7 +31,7 @@ we loop over all groups, at the end of each verse, we generate the last word ran
 \begin{lstlisting}
 >>> generating_random_line_end(self, start_word)
 \end{lstlisting}
-We start generating the line from the start work we pick and then \\textbf{randomly} generate lines, word by word, until we meet the END state, which marks as the completeness of a sentence. If we do counting as a strategy, we count the number of syllables in each line and after several trials (50 or 5000), we pick the line that is has the number of syllables closest to 10. So after having done with groups which is to say, if we are generating 50 sonnets for instance, we have all ready generated $50 \times 2$ verses for each group, we concatenate those pairs into poems. We also do counting on syllable to take care of the \textit{10 - syllable} rule for
+We start generating the line from a randomly picked start word we pick and then \\textbf{randomly} generate lines, word by word, until we meet the END state, which marks as the completeness of a sentence. If we do counting as a strategy, we count the number of syllables in each line and after several trials (50 or 5000), we pick the line that is has the number of syllables closest to 10. So after having done with groups which is to say, if we are generating 50 sonnets for instance, we have all ready generated $50 \times 2$ verses for each group, we concatenate those pairs into poems. We also do counting on syllable to take care of the \textit{10 - syllable} rule for
 each line in sonnet : in the following poem, we randomly generate at most 50 or 5000 lines, and keep the line whose total number of syllables is closest to 10.
 
 Here is one poem we generate from HMM with 80 number of hidden states, we generate at most 5000 lines for counting the syllables. 
