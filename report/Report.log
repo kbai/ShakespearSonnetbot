@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  14 MAR 2016 23:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  15 MAR 2016 00:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -991,7 +991,7 @@ Overfull \hbox (27.94075pt too wide) in paragraph at lines 13--14
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 42.
  (./section/hiddenMarkov.tex
-<./figure/probability.png, id=106, 578.16pt x 433.62pt>
+<./figure/probability.png, id=110, 578.16pt x 433.62pt>
 File: ./figure/probability.png Graphic file (type png)
 
 <use ./figure/probability.png>
@@ -1019,7 +1019,7 @@ Package hyperref Warning: Difference (2) between bookmark levels is greater
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 3.
 
-<./figure/HiddenMarkov5.png, id=128, 963.6pt x 377.41pt>
+<./figure/HiddenMarkov5.png, id=132, 963.6pt x 377.41pt>
 File: ./figure/HiddenMarkov5.png Graphic file (type png)
 
 <use ./figure/HiddenMarkov5.png>
@@ -1029,7 +1029,7 @@ Package pdftex.def Info: ./figure/HiddenMarkov5.png used on input line 7.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./figure/hiddenstate_len_distri.png, id=129, 578.16pt x 433.62pt>
+<./figure/hiddenstate_len_distri.png, id=133, 578.16pt x 433.62pt>
 File: ./figure/hiddenstate_len_distri.png Graphic file (type png)
 
 <use ./figure/hiddenstate_len_distri.png>
@@ -1041,7 +1041,7 @@ Package pdftex.def Info: ./figure/hiddenstate_len_distri.png used on input line
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-<./figure/hiddenstates_position_in_the_sentence.png, id=130, 578.16pt x 433.62p
+<./figure/hiddenstates_position_in_the_sentence.png, id=134, 578.16pt x 433.62p
 t>
 File: ./figure/hiddenstates_position_in_the_sentence.png Graphic file (type png
 )
@@ -1068,7 +1068,7 @@ r (name{figure.3}) has been already used, duplicate ignored
 l.48 \end{wrapfigure}
                       <./figure/HiddenMarkov5.png> <./figure/hiddenstate_len_di
 stri.png>]
-<./figure/hiddenstate_partofspeechtag.png, id=145, 578.16pt x 433.62pt>
+<./figure/hiddenstate_partofspeechtag.png, id=149, 578.16pt x 433.62pt>
 File: ./figure/hiddenstate_partofspeechtag.png Graphic file (type png)
 
 <use ./figure/hiddenstate_partofspeechtag.png>
@@ -1157,7 +1157,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Missing character: There is no â in font pplr7t!
 Missing character: There is no € in font pplr7t!
 Missing character: There is no ™ in font pplr7t!
-<./figure/numberofsyllablesinstates.png, id=146, 578.16pt x 433.62pt>
+<./figure/numberofsyllablesinstates.png, id=150, 578.16pt x 433.62pt>
 File: ./figure/numberofsyllablesinstates.png Graphic file (type png)
 
 <use ./figure/numberofsyllablesinstates.png>
@@ -1195,7 +1195,7 @@ gnored
 l.10  a
        nd  beauty  their  most  twice  being \\ <./figure/hiddenstate_partofspe
 echtag.png> <./figure/numberofsyllablesinstates.png>] [8] [9]
-LaTeX Font Info:    Try loading font information for TS1+ppl on input line 108.
+LaTeX Font Info:    Try loading font information for TS1+ppl on input line 132.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ts1ppl.fd
@@ -1209,31 +1209,31 @@ File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <10> not available
 (Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 20.
-
+ [11]
 Overfull \hbox (30.0505pt too wide) in paragraph at lines 39--40
 \OT1/ppl/m/n/10 word. We com-bine the \OT1/ppl/m/it/10 NLTK \OT1/ppl/m/n/10 pac
 k-age, the \OT1/ppl/m/it/10 Py-Hy-phen \OT1/ppl/m/n/10 pack-age and our own-wri
 tten func-tion \OT1/pcr/m/n/10 count[]syllables()
  []
 
-[11] [12]) (./section/conclusion.tex [13]) [14]
+[12]) (./section/conclusion.tex [13]) [14]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 77.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 77.
  (./Report.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 77.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 77.
 Package rerunfilecheck Info: File `Report.out' has not changed.
-(rerunfilecheck)             Checksum: F2A10F89A222EC373192FF53A7CA0149;1463.
+(rerunfilecheck)             Checksum: EEE4C1CA060B4D0362E246B0FF731338;1531.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 77.
  ) 
 Here is how much of TeX's memory you used:
- 21242 strings out of 493089
- 403838 string characters out of 6134842
- 503803 words of memory out of 5000000
- 24133 multiletter control sequences out of 15000+600000
+ 21259 strings out of 493089
+ 404046 string characters out of 6134842
+ 501801 words of memory out of 5000000
+ 24134 multiletter control sequences out of 15000+600000
  22875 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,17n,67p,1266b,1715s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,17n,67p,1266b,1223s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1250,10 +1250,10 @@ nts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
 e1/urw/palatino/uplbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw
 /palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palati
 no/uplri8a.pfb>
-Output written on Report.pdf (14 pages, 410265 bytes).
+Output written on Report.pdf (14 pages, 410978 bytes).
 PDF statistics:
- 383 PDF objects out of 1000 (max. 8388607)
- 337 compressed objects within 4 object streams
- 146 named destinations out of 1000 (max. 500000)
- 211 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 404 PDF objects out of 1000 (max. 8388607)
+ 358 compressed objects within 4 object streams
+ 162 named destinations out of 1000 (max. 500000)
+ 219 words of extra memory for PDF output out of 10000 (max. 10000000)
 
