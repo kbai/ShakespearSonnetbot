@@ -330,11 +330,6 @@ INPUT ./section/markov.tex
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/palatino/pplbi7t.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/vf/adobe/palatino/pplbi7t.vf
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/palatino/pplbi8r.tfm
-INPUT ./section/trials.tex
-INPUT ./section/trials.tex
-INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ts1ppl.fd
-INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ts1ppl.fd
-INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/palatino/pplr8c.tfm
 INPUT ./section/visualization.tex
 INPUT ./section/visualization.tex
 INPUT ./figure/HiddenMarkov5.png
@@ -346,8 +341,6 @@ INPUT ./figure/hiddenstate_len_distri.png
 INPUT ./figure/hiddenstates_position_in_the_sentence.png
 INPUT ./figure/hiddenstates_position_in_the_sentence.png
 INPUT ./figure/hiddenstates_position_in_the_sentence.png
-INPUT /usr/local/texlive/2015/texmf-dist/fonts/vf/adobe/palatino/pplr8c.vf
-INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/mathpazo/fplmr.tfm
 INPUT ./figure/hiddenstate_partofspeechtag.png
 INPUT ./figure/hiddenstate_partofspeechtag.png
 INPUT ./figure/hiddenstate_partofspeechtag.png
@@ -359,6 +352,11 @@ INPUT ./section/generation.tex
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/vf/adobe/courier/pcrr7t.vf
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ts1ppl.fd
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ts1ppl.fd
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/adobe/palatino/pplr8c.tfm
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/vf/adobe/palatino/pplr8c.vf
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/mathpazo/fplmr.tfm
 INPUT ./section/additional.tex
 INPUT ./section/additional.tex
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ts1pcr.fd

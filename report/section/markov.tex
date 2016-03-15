@@ -24,4 +24,4 @@ So, different from the first order model, the joint probability in the 2nd order
 \begin{equation}
   p(x_{1:M}) =p(x_1, x_2)p(x_3|x_2, x_1)p(x_4|x_3, x_2) ...  p(x_M|x_{M-1}, x_{M-2}) = p(x_1, x_2) \prod\limits_{m=3}^M p(x_m|x_{m-1}, x_{m-2}))
 \end{equation} 
-What should be mentioned is that we do counting and normalilzation for computing the piror probabilities $p(x_1 x_2)$ and trains on the transition probabilities $p(x_m|x_{m-1})$. Since we have around three thousand words in Shakespear's Sonnet, we the number of parameters (for $p(x_1 x_2)$ and $p(x_m|x_{m-1})$) is not substantially large, so the running time for 2nd order Markov Chain Model is affordable.
+What should be mentioned is that we do counting and normalilzation for computing the piror probabilities $p(x_i, x_j)$ and trains on the transition probabilities $p(x_m|x_{m-1})$. Since we have around three thousand words in Shakespear's Sonnet, we the number of parameters (for $p(x_i, x_j)$ and $p(x_m|x_{m-1})$) is not substantially large, so the running time for 2nd order Markov Chain Model is affordable.

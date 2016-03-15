@@ -27,7 +27,11 @@ For improvements, we partition the poetry set into different groups and train th
 \begin{lstlisting}
 >>> poem_generate(num_of_hidden_states, num_pairs)
 \end{lstlisting}
-we loop over all groups, at the end of each verse, we generate the last word randomly from rhyme dictionary. And we generate the last word in a poem, within a group in pairs in order to keep the ryhme scheme. For more details on ryhme dictionary, see Section \ref{sec:rhymedict}. So after having done with groups which is to say, if we are generating 50 sonnets for instance, we have all ready generated $50 \times 2$ verses for each group. Then we concatenate those pairs into poems. We also do counting on syllable to take care of the \textit{10 - syllable} rule for 
+we loop over all groups, at the end of each verse, we generate the last word randomly from rhyme dictionary. And we generate the last word in a poem, within a group in pairs in order to keep the ryhme scheme. For more details on ryhme dictionary, see Section \ref{sec:rhymedict}. In modelhmm member function:
+\begin{lstlisting}
+>>> generating_random_line_end(self, start_word)
+\end{lstlisting}
+We start generating the line from the start work we pick and then \\textbf{randomly} generate lines, word by word, until we meet the END state, which marks as the completeness of a sentence. If we do counting as a strategy, we count the number of syllables in each line and after several trials (50 or 5000), we pick the line that is has the number of syllables closest to 10. So after having done with groups which is to say, if we are generating 50 sonnets for instance, we have all ready generated $50 \times 2$ verses for each group, we concatenate those pairs into poems. We also do counting on syllable to take care of the \textit{10 - syllable} rule for
 each line in sonnet : in the following poem, we randomly generate at most 50 or 5000 lines, and keep the line whose total number of syllables is closest to 10.
 
 Here is one poem we generate from HMM with 80 number of hidden states, we generate at most 5000 lines for counting the syllables. 
