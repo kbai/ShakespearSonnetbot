@@ -193,7 +193,7 @@ class Markov():
                 line_pocket = line
                 linew_pocket = linew
 
-            if (error_pocket==0) or num_trial>5000: break
+            if (error_pocket==0) or num_trial>200: break
 
         # print "Number of syllabels:", sum(num_syllables)
 
@@ -216,7 +216,8 @@ def poem_generate(num_pairs):
         ending_words = ending_words_dict[ind]
 
         # preprocess data
-        corpusname = '../data/grouping1/group' + ind + '.txt'
+        ###corpusname = '../data/grouping1/group' + ind + '.txt'
+        corpusname = '../data/grouping2/group' + ind + '.txt'
         corpus = importasline(corpusname, ignorehyphen=False)
 
         vectorizer = CountVectorizer(min_df=1)
@@ -377,7 +378,7 @@ def hasNumbers(inputString):
 
 
 def main():
-    num_pairs = 20
+    num_pairs = 30
     poem_generate(num_pairs)
 
 
