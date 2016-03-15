@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  14 MAR 2016 15:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  14 MAR 2016 17:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -846,11 +846,7 @@ Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
 ))
 \c@question=\count152
 \c@subquestion=\count153
-) (./Report.aux
-
-LaTeX Warning: Label `sec:syllablecount' multiply defined.
-
-)
+) (./Report.aux)
 \openout1 = `Report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
@@ -1155,7 +1151,7 @@ k-age, the \OT1/ppl/m/it/10 Py-Hy-phen \OT1/ppl/m/n/10 pack-age and our own-wri
 tten func-tion \OT1/pcr/m/n/10 count[]syllables()
  []
 
-[9]) (./section/conclusion.tex) [10] [11]
+[9]) (./section/conclusion.tex [10]) [11]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 77.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 77.
  (./Report.aux)
@@ -1163,20 +1159,16 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 77.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 77.
 Package rerunfilecheck Info: File `Report.out' has not changed.
 (rerunfilecheck)             Checksum: 09A0C0E9C0D516570E2E627BE5052316;1365.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 77.
  ) 
 Here is how much of TeX's memory you used:
  21193 strings out of 493089
  403225 string characters out of 6134842
- 501834 words of memory out of 5000000
+ 501795 words of memory out of 5000000
  24125 multiletter control sequences out of 15000+600000
  22875 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,17n,67p,1017b,1711s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,17n,67p,1041b,1711s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1193,10 +1185,10 @@ nts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
 e1/urw/palatino/uplbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw
 /palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palati
 no/uplri8a.pfb>
-Output written on Report.pdf (11 pages, 397928 bytes).
+Output written on Report.pdf (11 pages, 400523 bytes).
 PDF statistics:
- 313 PDF objects out of 1000 (max. 8388607)
- 271 compressed objects within 3 object streams
+ 314 PDF objects out of 1000 (max. 8388607)
+ 272 compressed objects within 3 object streams
  102 named destinations out of 1000 (max. 500000)
  203 words of extra memory for PDF output out of 10000 (max. 10000000)
 
